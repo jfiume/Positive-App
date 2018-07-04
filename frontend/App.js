@@ -7,6 +7,7 @@ import logger from 'redux-logger';
 
 import RootReducer from './reducers/root_reducer';
 import PositivePage from './components/positive_page';
+import WelcomePage from './components/welcome_page';
 
 const store = createStore(RootReducer, applyMiddleware(thunk, logger));
 
@@ -14,6 +15,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
+        {/* <WelcomePage/> */}
         <PositivePage/>
       </Provider>
     );
