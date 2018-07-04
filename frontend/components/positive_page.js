@@ -9,54 +9,44 @@ import { fetchUser } from '../actions/user_actions';
 class PositivePage extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-      // name: 'Joe',
-      // affirmation: 'Today is a good day',
-      // name: this.props.user
-    // }
   }
-
-  async fetchUsers() {
-    try {
-      const response = await fetch("http://localhost:5000/user");
-      const users = await response.json();
-      console.log(users);
-      return users;
-    } catch (e) {
-      console.error("API request raised an error:", e);
-    }
-  };
 
   componentDidMount() {
     // this.props.fetchUser(this.props.match.params.id);
-    // this.props.fetchRandom();
-    this.fetchUsers();
+    this.props.fetchRandom();
   }
 
   render() {
-    return (
-      <PhoneScreen>
-        <BackgroundImg
+    if (Object.values(this.props.affirmation).length > 0) {
+      const affirmation = this.props.affirmation.body;
+      return (
+        <PhoneScreen>
+          <BackgroundImg
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good Day Joe</Heading>
-        <Affirmation>Today is a good day</Affirmation>
+        <Affirmation>{affirmation}</Affirmation>
       </PhoneScreen>
-    )
+      )
+    } else {
+      return (
+        <Text>Loading</Text>
+      )
+    }
   }
 }
 
 const mapStateToProps = ({ user, affirmation }) => {
   return {
     // user,
-    // affirmation
+    affirmation
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     // fetchUser: (user) => dispatch(fetchUser(user)),
-    // fetchRandom: () => dispatch(fetchRandom())
+    fetchRandom: () => dispatch(fetchRandom())
   };
 };
 

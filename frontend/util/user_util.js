@@ -1,6 +1,6 @@
 export const fetchUser = async function(id) {
   try {
-    const response = await fetch(`user/${id}`);
+    const response = await fetch(`http://localhost:5000user/${id}`);
     const user = await response.json();
     return user;
   } catch (e) {
@@ -18,7 +18,7 @@ export const createUser = async function(name) {
           'Content-Type': 'application/json',
         },
       };
-    const response = await fetch('/user', settings);
+    const response = await fetch('http://localhost:5000/user', settings);
     const user = await response.json();
     return user;
   } catch (e) {
@@ -36,7 +36,7 @@ export const updateUser = async function(id, name) {
           'Content-Type': 'application/json',
         },
       };
-    const response = await fetch(`user/${id}`, settings);
+    const response = await fetch(`http://localhost:5000user/${id}`, settings);
     const user = await response.json();
     return user;
   } catch (e) {

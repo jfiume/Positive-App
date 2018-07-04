@@ -4,11 +4,9 @@ import {
 
 const AffirmationReducer = (state = {}, action) => {
   Object.freeze(state);
-  console.log(action);
   switch (action.type) {
     case RECEIVE_AFFIRMATION:
-      const affirmation = {[action.affirmation.id]: action.affirmation};
-      return Object.assign({}, affirmation);
+      return Object.assign({}, action.affirmation);
     default:
       return state;
   }
