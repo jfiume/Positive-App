@@ -6,7 +6,7 @@ var upload = multer();
 var app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extedned: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 
 var user = require('./routes/user.js');

@@ -2,6 +2,28 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 
+const users = [
+  { name: 'Joe' },
+  { name: 'Sabrina' },
+  { name: 'Dan' },
+];
+
+// Seed the database from the above users
+router.get('/seed', function(req, res) {
+  User.find(function(err, response) {
+    for (let j in response) {
+      response[j].remove();
+    }
+  });
+  for (let i in users) {
+    let newUser = new User({
+      name: users[i].name
+    });
+    newUser.save();
+  }
+  res.json("database seeded");
+});
+
 //Get all users
 router.get('/', function(req, res) {
   User.find(function(err, response) {
@@ -51,5 +73,6 @@ router.put('/:id', function(req, res) {
     }
   });
 });
+
 
 module.exports = router;

@@ -16,9 +16,21 @@ class PositivePage extends Component {
     // }
   }
 
+  async fetchUsers() {
+    try {
+      const response = await fetch("http://localhost:5000/user");
+      const users = await response.json();
+      console.log(users);
+      return users;
+    } catch (e) {
+      console.error("API request raised an error:", e);
+    }
+  };
+
   componentDidMount() {
     // this.props.fetchUser(this.props.match.params.id);
     // this.props.fetchRandom();
+    this.fetchUsers();
   }
 
   render() {
