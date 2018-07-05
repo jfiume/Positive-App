@@ -12,7 +12,12 @@ class WelcomePage extends Component {
 
   render() {
     return (
-      <Text>Welcome</Text>
+      <View>
+        <BackgroundImg
+        source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
+      />
+      <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
+      </View>
     )
   }
 
@@ -36,5 +41,19 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(WelcomePage);
+
+const BackgroundImg = styled.Image`
+  width: 400;
+  height: 900;
+  position: relative;
+`;
+
+const WelcomeGreeting = styled.Text`
+  color: white;
+  top: 20%;
+  font-size: 30;
+  position: absolute;
+`;
+
 
 AppRegistry.registerComponent('PositiveApp', () => WelcomePage);
