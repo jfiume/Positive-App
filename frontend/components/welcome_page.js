@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity, Keyboard } from 'react-native';
+import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -16,47 +16,31 @@ class WelcomePage extends Component {
   }
 
   getNameFun() {
-   const { name } = this.state;
-   Alert.alert(`You have entered you name as ${name}. Please press OK`)
+   const { userName } = this.state;
+   const name = {name: this.state.name};
+   Alert.alert(`You have entered your name as ${userName}. If you would like to edit your name, please hit the 'EDIT' button on the next screen. Please press OK`)
+   this.props.createUser(name);
   }
-
-  // componentDidMount () {
-  //   this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
-  //   this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
-  // }
-  //
-  // componentWillUnmount () {
-  //   this.keyboardDidShowListener.remove();
-  //   this.keyboardDidHideListener.remove();
-  // }
-  //
-  // _keyboardDidShow () {
-  //   alert('Keyboard Shown');
-  // }
-  //
-  // _keyboardDidHide () {
-  //   alert('Keyboard Hidden');
-  // }
 
   render() {
     return (
       <PhoneScreen>
-        <SubmitButton onPress={this.getNameFun}>
-          <SubmitButtonBackground>
-              <SubmitButtonText>Submit</SubmitButtonText>
-          </SubmitButtonBackground>
-        </SubmitButton>
-        {/* <BackgroundImg
-        source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
-      /> */}
       <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
-      <NameInput
-        placeholder="Please enter your name here"
-        onChangeText={(name) => this.setState({name})}
-        value={this.state.name}
-        autoCapitalize="words"
-        keyboardAppearance="default"
-      />
+      <SubmitButton onPress={this.getNameFun}>
+        <NameInput
+          placeholder="Please enter your name here"
+          onChangeText={(name) => this.setState({name})}
+          value={this.state.name}
+          autoCapitalize="words"
+          keyboardAppearance="default"
+          keyboardType='default'
+          autoCorrect={false}
+          autoFocus={true}
+        />
+        <SubmitButtonBackground>
+          <SubmitButtonText>Submit</SubmitButtonText>
+        </SubmitButtonBackground>
+      </SubmitButton>
       </PhoneScreen>
     )
   }
@@ -103,14 +87,16 @@ const WelcomeGreeting = styled.Text`
 `;
 
 const NameInput = styled.TextInput`
-  position: absolute;
-  top: 50%;
+  position: relative;
+  top: 250px;
   color: black;
 `;
 
 const SubmitButton = styled.TouchableOpacity`
+  align-items: center;
   position: absolute;
-  top: 20%;
+  top: 10%;
+  flex: 1;
 `;
 
 const SubmitButtonBackground = styled.View`

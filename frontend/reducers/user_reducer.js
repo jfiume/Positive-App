@@ -6,7 +6,7 @@ const UserReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECIEVE_USER:
-      const newUser = {[action.user.id]: action.user};
+      const newUser = action.user;
       return Object.assign({}, newUser);
     default:
       return state;

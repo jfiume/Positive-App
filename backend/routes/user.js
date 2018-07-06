@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require('../models/user.js');
 
 const users = [
-  { name: 'Joe' },
+  { name: 'Scott' },
   { name: 'Sabrina' },
   { name: 'Dan' },
 ];
@@ -24,24 +24,6 @@ router.get('/seed', function(req, res) {
   res.json("database seeded");
 });
 
-//Get all users
-router.get('/', function(req, res) {
-  User.find(function(err, response) {
-    res.json(response);
-  });
-});
-
-//Get a specific user
-router.get('/:id', function(req, res) {
-  User.findById(req.params.id, function(err, response) {
-    if(err) {
-      res.json({message: `Error cannot find user with id ${req.params.id}`});
-    } else {
-      res.json(response);
-    }
-  });
-});
-
 //Add a new user
 router.post('/', function(req, res) {
   const userInfo = req.body;
@@ -50,7 +32,7 @@ router.post('/', function(req, res) {
     res.json({message: "Bad Request"});
   } else {
     let newUser = new User({
-      name: userInfo.name
+      name: req.body.name
     });
 
     newUser.save(function(err, User) {
@@ -74,5 +56,22 @@ router.put('/:id', function(req, res) {
   });
 });
 
+//Get all users
+router.get('/', function(req, res) {
+  User.find(function(err, response) {
+    res.json(response);
+  });
+});
+
+//Get a specific user
+router.get('/:id', function(req, res) {
+  User.findById(req.params.id, function(err, response) {
+    if(err) {
+      res.json({message: `Error cannot find user with id ${req.params.id}`});
+    } else {
+      res.json(response);
+    }
+  });
+});
 
 module.exports = router;

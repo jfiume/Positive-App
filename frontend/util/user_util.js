@@ -9,6 +9,7 @@ export const fetchUser = async function(id) {
 };
 
 export const createUser = async function(name) {
+  console.log(name);
   try {
     const settings = {
       method: 'POST',
@@ -18,8 +19,9 @@ export const createUser = async function(name) {
           'Content-Type': 'application/json',
         },
       };
-    const response = await fetch('http://localhost:5000/user', settings);
+    const response = await fetch("http://localhost:5000/user", settings);
     const user = await response.json();
+    console.log(user);
     return user;
   } catch (e) {
     console.error("API request raised an error:", e);
