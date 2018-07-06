@@ -16,10 +16,10 @@ class WelcomePage extends Component {
   }
 
   getNameFun() {
-   const { userName } = this.state;
-   const name = {name: this.state.name};
-   Alert.alert(`You have entered your name as ${userName}. If you would like to edit your name, please hit the 'EDIT' button on the next screen. Please press OK`)
-   this.props.createUser(name);
+   const { name } = this.state;
+   const user = { name: name };
+   this.props.createUser(user);
+   Alert.alert(`You have entered your name as ${name}. If you would like to edit your name, please hit the 'EDIT' button on the next screen. Please press OK`)
   }
 
   render() {
@@ -71,12 +71,6 @@ const PhoneScreen = styled.View`
   flex: 1;
   align-items: center;
   background-color: skyblue;
-`;
-
-const BackgroundImg = styled.Image`
-  width: 400;
-  height: 900;
-  position: relative;
 `;
 
 const WelcomeGreeting = styled.Text`

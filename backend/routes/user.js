@@ -39,7 +39,7 @@ router.post('/', function(req, res) {
       if(err){
         res.json({message: "Database error"});
       } else {
-        res.json({message: "New user added"});
+        res.json(User);
       }
     });
   }
