@@ -12,10 +12,10 @@ class WelcomePage extends Component {
       name: ''
     };
 
-    this.getNameFun = this.getNameFun.bind(this);
+    this.createUserFun = this.createUserFun.bind(this);
   }
 
-  getNameFun() {
+  createUserFun() {
    const { name } = this.state;
    const user = { name: name };
    this.props.createUser(user);
@@ -26,7 +26,7 @@ class WelcomePage extends Component {
     return (
       <PhoneScreen>
       <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
-      <SubmitButton onPress={this.getNameFun}>
+      <SubmitButton onPress={this.createUserFun}>
         <NameInput
           placeholder="Please enter your name here"
           onChangeText={(name) => this.setState({name})}
@@ -49,15 +49,13 @@ class WelcomePage extends Component {
 
 const mapStateToProps = ({ user, affirmation }) => {
   return {
-    user,
-    // affirmation
+    user
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (user) => dispatch(createUser(user)),
-    // fetchRandom: () => dispatch(fetchRandom())
+    createUser: (user) => dispatch(createUser(user))
   };
 };
 
