@@ -5,9 +5,12 @@
   "devDependencies": {
     "jest-expo": "~27.0.0",
     "react-native-scripts": "1.14.0",
-    "react-test-renderer": "16.3.1"
+    "react-test-renderer": "16.3.1",
+    "proxy-polyfill": "^0.3.0",
+    "redux-logger": "^3.0.6"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "proxy-polyfill": "http://localhost:5000",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
@@ -24,9 +27,7 @@
     "react-native": "~0.55.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.3.3"
-  },
-  "proxy": "http://localhost:5000"
+  }
 }
