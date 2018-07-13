@@ -9,7 +9,9 @@ const loadingReducer = (state = initialState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_AFFIRMATION:
-      return Object.assign({}, state, { loading: false });
+      if (Object.keys(action.affirmation).length < 1) {
+        return Object.assign({}, state, { loading: false });
+      }
     case RECIEVE_USER:
       return Object.assign({}, state, { loading: false });
     case START_LOADING_RANDOM_AFFIRMATION:

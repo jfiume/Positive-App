@@ -12,7 +12,17 @@ class PositivePage extends Component {
   }
 
   componentDidMount() {
+    if (Object.keys(this.props.user).length < 1) {
+      this.props.navigation.navigate('WelcomePage');
+    };
     this.props.fetchRandom();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { loading } = this.props.loadingStatus;
+    if (!loading && Object.keys(this.props.affirmation).length < 1) {
+      this.props.fetchRandom();
+    }
   }
 
   render() {
@@ -75,7 +85,7 @@ const Affirmation = styled.Text`
   color: white;
   font-size: 40;
   position: absolute;
-  top: 200;
+  bottom: 40;
 `;
 
 const BackgroundImg = styled.Image`

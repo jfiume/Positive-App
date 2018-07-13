@@ -8,7 +8,7 @@ export const fetchUser = async function(id) {
     const user = await response.json();
     return user;
   } catch (e) {
-    console.error("API request raised an error:", e);
+    console.log("API request raised an error:", e);
   }
 };
 
@@ -30,7 +30,7 @@ export const createUser = async function(name) {
     const user = await response.json();
     return user;
   } catch (e) {
-    console.error("API request raised an error:", e);
+    console.log("API request raised an error:", e);
   }
 };
 
@@ -52,6 +52,6 @@ export const updateUser = async function(id, name) {
     const user = await response.json();
     return user;
   } catch (e) {
-    console.error("API request raised an error:", e);
+    console.log("API request raised an error:", e);
   }
 };

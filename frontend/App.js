@@ -24,7 +24,7 @@ export default class App extends Component {
 
 const RootStack = createStackNavigator(
   {
-    Splash: WelcomePage,
+    WelcomePage: WelcomePage,
     PositivePage: PositivePage,
   },
   {

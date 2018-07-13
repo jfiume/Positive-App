@@ -9,6 +9,6 @@ export const fetchRandom = async function() {
     const affirmation = await response.json();
     return affirmation;
   } catch (e) {
-    console.error("API request raised an error:", e);
+    console.log("API request raised an error:", e);
   }
 };

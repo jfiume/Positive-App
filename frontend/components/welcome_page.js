@@ -19,7 +19,6 @@ class WelcomePage extends Component {
    const { name } = this.state;
    const user = { name: name };
    this.props.createUser(user);
-   Alert.alert(`You have entered your name as ${name}. If you would like to edit your name, please hit the 'EDIT' button on the next screen. Please press OK`)
    this.props.navigation.navigate('PositivePage');
   }
 
