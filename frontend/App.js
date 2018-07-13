@@ -1,9 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
+
 
 import RootReducer from './reducers/root_reducer';
 import PositivePage from './components/positive_page';
@@ -11,22 +12,26 @@ import WelcomePage from './components/welcome_page';
 
 const store = createStore(RootReducer, applyMiddleware(thunk, logger));
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/* <WelcomePage/> */}
-        <PositivePage/>
+        <RootStack />
       </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const RootStack = createStackNavigator(
+  {
+    Splash: {
+      screen: WelcomePage,
+    },
+    PositivePage: {
+      screen: PositivePage,
+    },
   },
-});
+  {
+    initialRouteName: 'Splash',
+  }
+);

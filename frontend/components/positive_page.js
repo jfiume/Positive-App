@@ -19,12 +19,13 @@ class PositivePage extends Component {
   render() {
     if (Object.values(this.props.affirmation).length > 0) {
       const affirmation = this.props.affirmation.body;
+      const user = this.props.user.name;
       return (
         <PhoneScreen>
           <BackgroundImg
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
-        <Heading>Good Day Joe</Heading>
+        <Heading>Good Day {user}</Heading>
         <Affirmation>{affirmation}</Affirmation>
       </PhoneScreen>
       )
@@ -38,7 +39,7 @@ class PositivePage extends Component {
 
 const mapStateToProps = ({ user, affirmation }) => {
   return {
-    // user,
+    user,
     affirmation
   };
 };
