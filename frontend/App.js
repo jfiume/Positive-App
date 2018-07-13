@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
+import { createStackNavigator } from 'react-navigation';
 
 
 import RootReducer from './reducers/root_reducer';
@@ -24,14 +24,10 @@ export default class App extends Component {
 
 const RootStack = createStackNavigator(
   {
-    Splash: {
-      screen: WelcomePage,
-    },
-    PositivePage: {
-      screen: PositivePage,
-    },
+    Splash: WelcomePage,
+    PositivePage: PositivePage,
   },
   {
-    initialRouteName: 'Splash',
+    initialRouteName: 'PositivePage',
   }
 );

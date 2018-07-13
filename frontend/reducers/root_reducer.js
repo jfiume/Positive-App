@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 
 import AffirmationReducer from './affirmation_reducer';
 import UserReducer from './user_reducer';
+import loadingReducer from './loading_reducer';
 
 const RootReducer = combineReducers({
   affirmation: AffirmationReducer,
-  user: UserReducer
+  user: UserReducer,
+  loadingStatus: loadingReducer,
 });
 
 export default RootReducer;

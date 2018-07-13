@@ -12,12 +12,13 @@ class PositivePage extends Component {
   }
 
   componentDidMount() {
-    // this.props.fetchUser(this.props.match.params.id);
     this.props.fetchRandom();
   }
 
   render() {
-    if (Object.values(this.props.affirmation).length > 0) {
+    const { loading } = this.props.loadingStatus;
+    // We have to make sure our asynchronous fetch call has returned data before we can render
+    if (!loading && Object.values(this.props.affirmation).length > 0) {
       const affirmation = this.props.affirmation.body;
       const user = this.props.user.name;
       return (
@@ -37,16 +38,16 @@ class PositivePage extends Component {
   }
 }
 
-const mapStateToProps = ({ user, affirmation }) => {
+const mapStateToProps = ({ user, affirmation, loadingStatus }) => {
   return {
     user,
-    affirmation
+    affirmation,
+    loadingStatus
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchUser: (user) => dispatch(fetchUser(user)),
     fetchRandom: () => dispatch(fetchRandom())
   };
 };
@@ -74,7 +75,7 @@ const Affirmation = styled.Text`
   color: white;
   font-size: 40;
   position: absolute;
-  top: 75%;
+  top: 200;
 `;
 
 const BackgroundImg = styled.Image`
