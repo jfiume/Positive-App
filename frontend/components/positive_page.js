@@ -13,6 +13,9 @@ class PositivePage extends Component {
   }
 
   componentWillMount() {
+    if (Object.keys(this.props.user).length < 1) {
+      this.props.navigation.navigate('WelcomePage');
+    };
     RNShakeEvent.addEventListener('shake', () => {
       this.props.fetchRandom();
     });
@@ -28,7 +31,7 @@ class PositivePage extends Component {
       if (id) {
         this.props.fetchUser(id);
       } else {
-
+        AsyncStorage.clear([callback]: ?(error: ?Error) => void)
       }
     } catch (error) {
       // Error retrieving data
@@ -62,18 +65,17 @@ class PositivePage extends Component {
       const affirmation = this.props.affirmation;
       const user = this.props.user.name;
       // select the random affirmation from the front end
-      const random = Math.floor(Math.random() * Object.keys(this.props.affirmation).length);
+      const affirmationKey = this.props.affirmationKey;
       return (
         <PhoneScreen>
           <BackgroundImg
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good Day {user}</Heading>
-        <Affirmation>{affirmation[random].body}</Affirmation>
+        <Affirmation>{affirmation[affirmationKey].body}</Affirmation>
       </PhoneScreen>
       )
     } else {
-      this.props.navigation.navigate('WelcomePage');
       return (
         <Text>Loading</Text>
       )
@@ -86,7 +88,8 @@ const mapStateToProps = ({ user, affirmation, loadingStatus }, newUser) => {
     user,
     affirmation,
     loadingStatus,
-    newUser
+    newUser,
+    affirmationKey: randomSelector(affirmation)
   };
 };
 
@@ -102,6 +105,10 @@ export default connect(
   mapDispatchToProps
 )(PositivePage);
 
+const randomSelector = (affirmation) => {
+  const random = Math.floor(Math.random() * Object.keys(affirmation).length);
+  return random;
+};
 
 const PhoneScreen = styled.View`
   flex: 1;

@@ -24,6 +24,12 @@ class WelcomePage extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
+      this.props.navigation.navigate('PositivePage');
+    }
+  }
+
   createUserFun() {
    const { name } = this.state;
    const user = { name: name };
@@ -89,7 +95,7 @@ const WelcomeGreeting = styled.Text`
 
 const NameInput = styled.TextInput`
   position: relative;
-  top: 250px;
+  top: 170%;
   color: black;
 `;
 
