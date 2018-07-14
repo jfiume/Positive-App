@@ -3,7 +3,7 @@
 PositiveApp is a mobile app built on React Native for iOS and Android by Joe Fiume.
 [jfiume.github.io](http://https://github.com/jfiume)
 
-<img src="https://res.cloudinary.com/pancake/image/upload/v1531610435/PositiveApp_MainPage.png" >
+<img src="https://res.cloudinary.com/pancake/image/upload/c_scale,h_800/v1531610435/PositiveApp_MainPage.png" >
 ## Features
 
 - Users can view their name and a random affirmation
@@ -66,4 +66,4 @@ createUserFun() {
 ## npm
 
 Node package manager (npm) is used to install all of the dependencies.
-Concurrently is used to load both the backend and frontend serves simultaneously.
+Concurrently is used to load both the backend and frontend servers simultaneously.
