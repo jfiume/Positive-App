@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity } from 'react-native';
+import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity, AsyncStorage } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -19,6 +19,13 @@ class WelcomePage extends Component {
    const { name } = this.state;
    const user = { name: name };
    this.props.createUser(user);
+   _storeData = async () => {
+     try {
+       await AsyncStorage.setItem('userId', this.props.user.id);
+     } catch (error) {
+       // Error saving data
+     }
+   }
    this.props.navigation.navigate('PositivePage');
   }
 

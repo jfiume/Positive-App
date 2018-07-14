@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image } from 'react-native';
+import { AppRegistry, Text, View, Image, AsyncStorage } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -12,6 +12,17 @@ class PositivePage extends Component {
   }
 
   componentDidMount() {
+    _retrieveData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('userId');
+        if (value !== null) {
+          // We have data!!
+          console.log(value);
+        }
+      } catch (error) {
+        // Error retrieving data
+      }
+    }
     if (Object.keys(this.props.user).length < 1) {
       this.props.navigation.navigate('WelcomePage');
     };
@@ -29,15 +40,17 @@ class PositivePage extends Component {
     const { loading } = this.props.loadingStatus;
     // We have to make sure our asynchronous fetch call has returned data before we can render
     if (!loading && Object.values(this.props.affirmation).length > 0) {
-      const affirmation = this.props.affirmation.body;
+      const affirmation = this.props.affirmation;
       const user = this.props.user.name;
+      // select the random affirmation from the front end
+      const random = Math.floor(Math.random() * Object.keys(this.props.affirmation).length);
       return (
         <PhoneScreen>
           <BackgroundImg
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good Day {user}</Heading>
-        <Affirmation>{affirmation}</Affirmation>
+        <Affirmation>{affirmation[random].body}</Affirmation>
       </PhoneScreen>
       )
     } else {
