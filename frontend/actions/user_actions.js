@@ -12,11 +12,11 @@ export const startLoadingUser = () => ({
   type: START_LOADING_USER
 });
 
-export const fetchUser = () => dispatch => {
+export const fetchUser = (id) => dispatch => {
   // Signal that we are starting our async call
   dispatch(startLoadingUser());
   return (
-    userUtil.fetchUser().then(user => (
+    userUtil.fetchUser(id).then(user => (
       dispatch(receiveUser(user))
     ))
   );

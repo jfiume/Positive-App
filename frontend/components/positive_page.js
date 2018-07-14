@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, Image, AsyncStorage } from 'react-native';
 import styled from 'styled-components';
+import RNShakeEvent from 'react-native-shake-event';
 
 import { connect } from 'react-redux';
 import { fetchRandom } from '../actions/affirmation_actions';
@@ -11,27 +12,45 @@ class PositivePage extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    _retrieveData = async () => {
-      try {
-        const value = await AsyncStorage.getItem('userId');
-        if (value !== null) {
-          // We have data!!
-          console.log(value);
-        }
-      } catch (error) {
-        // Error retrieving data
+  componentWillMount() {
+    RNShakeEvent.addEventListener('shake', () => {
+      this.props.fetchRandom();
+    });
+  }
+
+  componentWillUnmount() {
+    RNShakeEvent.removeEventListener('shake');
+  }
+
+  async _retrieveData() {
+    try {
+      const id = await AsyncStorage.getItem('userId');
+      if (id) {
+        this.props.fetchUser(id);
+      } else {
+
       }
+    } catch (error) {
+      // Error retrieving data
     }
-    if (Object.keys(this.props.user).length < 1) {
-      this.props.navigation.navigate('WelcomePage');
-    };
+  }
+
+  componentDidMount() {
+    this._retrieveData();
     this.props.fetchRandom();
+    // if (Object.keys(this.props.user).length < 1) {
+    //   this.props.navigation.navigate('WelcomePage');
+    // };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
+      this._retrieveData();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { loading } = this.props.loadingStatus;
-    if (!loading && Object.keys(this.props.affirmation).length < 1) {
+    if (nextProps.affirmation !== this.props.affirmation && Object.keys(this.props.affirmation).length < 1) {
       this.props.fetchRandom();
     }
   }
@@ -39,7 +58,7 @@ class PositivePage extends Component {
   render() {
     const { loading } = this.props.loadingStatus;
     // We have to make sure our asynchronous fetch call has returned data before we can render
-    if (!loading && Object.values(this.props.affirmation).length > 0) {
+    if (!loading && Object.values(this.props.affirmation).length > 0 && Object.keys(this.props.user).length > 0) {
       const affirmation = this.props.affirmation;
       const user = this.props.user.name;
       // select the random affirmation from the front end
@@ -54,6 +73,7 @@ class PositivePage extends Component {
       </PhoneScreen>
       )
     } else {
+      this.props.navigation.navigate('WelcomePage');
       return (
         <Text>Loading</Text>
       )
@@ -61,17 +81,19 @@ class PositivePage extends Component {
   }
 }
 
-const mapStateToProps = ({ user, affirmation, loadingStatus }) => {
+const mapStateToProps = ({ user, affirmation, loadingStatus }, newUser) => {
   return {
     user,
     affirmation,
-    loadingStatus
+    loadingStatus,
+    newUser
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchRandom: () => dispatch(fetchRandom())
+    fetchRandom: () => dispatch(fetchRandom()),
+    fetchUser: id => dispatch(fetchUser(id))
   };
 };
 

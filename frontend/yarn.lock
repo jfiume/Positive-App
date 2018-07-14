@@ -5646,6 +5646,12 @@ react-native-scripts@1.14.0:
     rimraf "^2.6.1"
     xdl "48.1.4"
 
+react-native-shake-event@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-shake-event/-/react-native-shake-event-4.0.1.tgz#b167e844b711eff50d44d029537fbb228b2ac6b2"
+  dependencies:
+    invariant "^2.2.2"
+
 react-native-svg-web@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-svg-web/-/react-native-svg-web-1.0.1.tgz#16e1784077b6e5b6c7ebd9c3829e6684211cba99"

@@ -15,17 +15,19 @@ class WelcomePage extends Component {
     this.createUserFun = this.createUserFun.bind(this);
   }
 
+  async _storeData(user) {
+    const userId = user.user._id
+    try {
+      await AsyncStorage.setItem('userId', userId);
+    } catch (error) {
+      // Error saving data
+    }
+  }
+
   createUserFun() {
    const { name } = this.state;
    const user = { name: name };
-   this.props.createUser(user);
-   _storeData = async () => {
-     try {
-       await AsyncStorage.setItem('userId', this.props.user.id);
-     } catch (error) {
-       // Error saving data
-     }
-   }
+   this.props.createUser(user).then((user) => this._storeData(user));
    this.props.navigation.navigate('PositivePage');
   }
 
