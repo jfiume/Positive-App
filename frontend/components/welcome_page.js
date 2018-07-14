@@ -21,6 +21,7 @@ class WelcomePage extends Component {
       await AsyncStorage.setItem('userId', userId);
     } catch (error) {
       // Error saving data
+      console.log("AsyncStorage request raised an error:", e);
     }
   }
 

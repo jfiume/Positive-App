@@ -46,17 +46,17 @@ class PositivePage extends Component {
     // };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
-      this._retrieveData();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.affirmation !== this.props.affirmation && Object.keys(this.props.affirmation).length < 1) {
-      this.props.fetchRandom();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
+  //     this._retrieveData();
+  //   }
+  // }
+  //
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.affirmation !== this.props.affirmation && Object.keys(this.props.affirmation).length < 1) {
+  //     this.props.fetchRandom();
+  //   }
+  // }
 
   render() {
     const { loading } = this.props.loadingStatus;
