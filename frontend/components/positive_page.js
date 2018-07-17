@@ -17,9 +17,6 @@ class PositivePage extends Component {
     RNShakeEvent.addEventListener('shake', () => {
       this.props.fetchRandom();
     });
-    // if (!this.props.user && !loading && Object.values(this.props.affirmation).length > 0) {
-    //   this.props.navigation.navigate('WelcomePage');
-    // };
   }
 
   componentWillUnmount() {
@@ -37,7 +34,6 @@ class PositivePage extends Component {
       }
     } catch (error) {
       // Error retrieving data
-      this.props.navigation.navigate('WelcomePage');
       console.log("AsyncStorage request raised an error:", e);
     }
   }
@@ -45,34 +41,13 @@ class PositivePage extends Component {
   componentDidMount() {
     this.props.fetchRandom();
     const { loading } = this.props.loadingStatus;
-    // if (!this.props.user && !loading && Object.values(this.props.affirmation).length > 0) {
-    //   this.props.navigation.navigate('WelcomePage');
-    // };
-  }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
-  //     this._retrieveData();
-  //   }
-  // }
-  //
-
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.user === this.props.user && !this.props.user) {
-      this.props.navigation.navigate('WelcomePage');
-      return true;
-    } else {
-      return true;
-    }
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
-      this.props.navigation.navigate('PositivePage');
+    const { loading } = this.props.loadingStatus;
+    if (!loading && Object.values(this.props.affirmation).length > 0 && Object.keys(nextProps.user).length < 1) {
+      this.props.navigation.navigate('WelcomePage');
     }
-  //   if (nextProps.affirmation !== this.props.affirmation && Object.keys(this.props.affirmation).length < 1) {
-  //     this.props.fetchRandom();
-  //   }
   }
 
   render() {

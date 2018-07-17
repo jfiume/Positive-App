@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity, AsyncStorage } from 'react-native';
+import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -25,47 +25,60 @@ class WelcomePage extends Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
-  //     this.props.navigation.navigate('PositivePage');
-  //   }
-  // }
+  shouldComponentUpdate(nextProps) {
+    if (Object.keys(nextProps.user).length > 0) {
+      this.props.navigation.navigate('PositivePage');
+      return true;
+    }
+    return true;
+  }
 
   createUserFun() {
    const { name } = this.state;
+   if (name === "") {
+     return;
+   }
    const user = { name: name };
    this.props.createUser(user).then((user) => this._storeData(user));
    this.props.navigation.navigate('PositivePage');
   }
 
   render() {
-    return (
-      <PhoneScreen>
-        <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
-        <SubmitButton onPress={this.createUserFun}>
-          <NameInput
-            placeholder="Please enter your name here"
-            onChangeText={(name) => this.setState({name})}
-            value={this.state.name}
-            autoCapitalize="words"
-            keyboardAppearance="default"
-            keyboardType='default'
-            autoCorrect={false}
-            autoFocus={true}
-          />
-          <SubmitButtonBackground>
-            <SubmitButtonText>Submit</SubmitButtonText>
-          </SubmitButtonBackground>
-        </SubmitButton>
-      </PhoneScreen>
-    )
+    const { loading } = this.props.loadingStatus;
+    if (!loading && Object.values(this.props.affirmation).length > 0) {
+      return (
+        <PhoneScreen>
+          <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
+          <SubmitButton onPress={this.createUserFun}>
+            <NameInput
+              placeholder="Please enter your name here"
+              onChangeText={(name) => this.setState({name})}
+              value={this.state.name}
+              autoCapitalize="words"
+              keyboardAppearance="default"
+              keyboardType='default'
+              autoCorrect={false}
+              autoFocus={true}
+            />
+            <SubmitButtonBackground>
+              <SubmitButtonText>Submit</SubmitButtonText>
+            </SubmitButtonBackground>
+          </SubmitButton>
+        </PhoneScreen>
+      )
+    } else {
+      return (
+        <ActivityIndicator size="large" color="#0000ff" />
+      )
+    }
   }
-
 }
 
-const mapStateToProps = ({ user, affirmation }) => {
+const mapStateToProps = ({ user, affirmation, loadingStatus }) => {
   return {
-    user
+    user,
+    affirmation,
+    loadingStatus
   };
 };
 
@@ -108,11 +121,10 @@ const SubmitButton = styled.TouchableOpacity`
 `;
 
 const SubmitButtonBackground = styled.View`
-  margin-bottom: 30;
-  width: 260px;
   alignItems: center;
   backgroundColor: #2196F3;
-  top: 270px;
+  position: absolute;
+  top: 170%;
 `;
 
 const SubmitButtonText = styled.Text`
