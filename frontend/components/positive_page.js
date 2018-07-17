@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, AsyncStorage } from 'react-native';
+import { AppRegistry, Text, View, Image, AsyncStorage, ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
 import RNShakeEvent from 'react-native-shake-event';
 
@@ -17,6 +17,9 @@ class PositivePage extends Component {
     RNShakeEvent.addEventListener('shake', () => {
       this.props.fetchRandom();
     });
+    // if (!this.props.user && !loading && Object.values(this.props.affirmation).length > 0) {
+    //   this.props.navigation.navigate('WelcomePage');
+    // };
   }
 
   componentWillUnmount() {
@@ -25,6 +28,7 @@ class PositivePage extends Component {
 
   async _retrieveData() {
     try {
+      // Saving the current user's ID in the AsyncStorage for the next time they open the app
       const id = await AsyncStorage.getItem('userId');
       if (id) {
         this.props.fetchUser(id);
@@ -33,15 +37,15 @@ class PositivePage extends Component {
       }
     } catch (error) {
       // Error retrieving data
+      this.props.navigation.navigate('WelcomePage');
+      console.log("AsyncStorage request raised an error:", e);
     }
   }
 
   componentDidMount() {
     this.props.fetchRandom();
-    if (Object.keys(this.props.user).length < 1) {
-      this.props.navigation.navigate('WelcomePage');
-    };
-    // if (Object.keys(this.props.user).length < 1) {
+    const { loading } = this.props.loadingStatus;
+    // if (!this.props.user && !loading && Object.values(this.props.affirmation).length > 0) {
     //   this.props.navigation.navigate('WelcomePage');
     // };
   }
@@ -52,11 +56,24 @@ class PositivePage extends Component {
   //   }
   // }
   //
-  // componentWillReceiveProps(nextProps) {
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.user === this.props.user && !this.props.user) {
+      this.props.navigation.navigate('WelcomePage');
+      return true;
+    } else {
+      return true;
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
+      this.props.navigation.navigate('PositivePage');
+    }
   //   if (nextProps.affirmation !== this.props.affirmation && Object.keys(this.props.affirmation).length < 1) {
   //     this.props.fetchRandom();
   //   }
-  // }
+  }
 
   render() {
     const { loading } = this.props.loadingStatus;
@@ -77,7 +94,7 @@ class PositivePage extends Component {
       )
     } else {
       return (
-        <Text>Loading</Text>
+        <ActivityIndicator size="large" color="#0000ff" />
       )
     }
   }

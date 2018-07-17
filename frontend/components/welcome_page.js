@@ -25,11 +25,11 @@ class WelcomePage extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
-      this.props.navigation.navigate('PositivePage');
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.user !== this.props.user && Object.keys(this.props.user).length < 1) {
+  //     this.props.navigation.navigate('PositivePage');
+  //   }
+  // }
 
   createUserFun() {
    const { name } = this.state;
@@ -41,22 +41,22 @@ class WelcomePage extends Component {
   render() {
     return (
       <PhoneScreen>
-      <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
-      <SubmitButton onPress={this.createUserFun}>
-        <NameInput
-          placeholder="Please enter your name here"
-          onChangeText={(name) => this.setState({name})}
-          value={this.state.name}
-          autoCapitalize="words"
-          keyboardAppearance="default"
-          keyboardType='default'
-          autoCorrect={false}
-          autoFocus={true}
-        />
-        <SubmitButtonBackground>
-          <SubmitButtonText>Submit</SubmitButtonText>
-        </SubmitButtonBackground>
-      </SubmitButton>
+        <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
+        <SubmitButton onPress={this.createUserFun}>
+          <NameInput
+            placeholder="Please enter your name here"
+            onChangeText={(name) => this.setState({name})}
+            value={this.state.name}
+            autoCapitalize="words"
+            keyboardAppearance="default"
+            keyboardType='default'
+            autoCorrect={false}
+            autoFocus={true}
+          />
+          <SubmitButtonBackground>
+            <SubmitButtonText>Submit</SubmitButtonText>
+          </SubmitButtonBackground>
+        </SubmitButton>
       </PhoneScreen>
     )
   }
