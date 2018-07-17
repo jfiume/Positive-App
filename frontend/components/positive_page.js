@@ -40,7 +40,6 @@ class PositivePage extends Component {
 
   componentDidMount() {
     this.props.fetchRandom();
-    const { loading } = this.props.loadingStatus;
   }
 
   componentWillUpdate(nextProps) {
@@ -104,12 +103,11 @@ const randomSelector = (affirmation) => {
 const PhoneScreen = styled.View`
   flex: 1;
   align-items: center;
-  background-color: skyblue;
 `;
 
 const Heading = styled.Text`
   color: white;
-  top: 20%;
+  top: 12%;
   font-size: 30;
   position: absolute;
 `;
@@ -118,12 +116,12 @@ const Affirmation = styled.Text`
   color: white;
   font-size: 40;
   position: absolute;
-  bottom: 40;
+  bottom: 12%;
 `;
 
 const BackgroundImg = styled.Image`
   width: 400;
-  height: 900;
+  height: 800;
   position: relative;
 `;
 

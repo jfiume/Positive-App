@@ -35,6 +35,7 @@ class WelcomePage extends Component {
 
   createUserFun() {
    const { name } = this.state;
+   // prevents adding a blank name
    if (name === "") {
      return;
    }

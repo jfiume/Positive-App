@@ -57,6 +57,10 @@ async _storeData(user) {
 
 createUserFun() {
  const { name } = this.state;
+ // prevents adding a blank name
+ if (name === "") {
+   return;
+ }
  const user = { name: name };
  this.props.createUser(user).then((user) => this._storeData(user));
  // Push to the main page
