@@ -13,9 +13,7 @@ class PositivePage extends Component {
   }
 
   componentWillMount() {
-    if (Object.keys(this.props.user).length < 1) {
-      this.props.navigation.navigate('WelcomePage');
-    };
+    this._retrieveData();
     RNShakeEvent.addEventListener('shake', () => {
       this.props.fetchRandom();
     });
@@ -39,8 +37,10 @@ class PositivePage extends Component {
   }
 
   componentDidMount() {
-    this._retrieveData();
     this.props.fetchRandom();
+    if (Object.keys(this.props.user).length < 1) {
+      this.props.navigation.navigate('WelcomePage');
+    };
     // if (Object.keys(this.props.user).length < 1) {
     //   this.props.navigation.navigate('WelcomePage');
     // };
@@ -83,12 +83,11 @@ class PositivePage extends Component {
   }
 }
 
-const mapStateToProps = ({ user, affirmation, loadingStatus }, newUser) => {
+const mapStateToProps = ({ user, affirmation, loadingStatus }) => {
   return {
     user,
     affirmation,
     loadingStatus,
-    newUser,
     affirmationKey: randomSelector(affirmation)
   };
 };
