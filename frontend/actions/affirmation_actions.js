@@ -1,23 +1,23 @@
 import * as affirmationUtil from '../util/affirmation_util';
 
-export const RECEIVE_AFFIRMATION = 'RECEIVE_AFFIRMATION';
-export const START_LOADING_RANDOM_AFFIRMATION = 'START_LOADING_RANDOM_AFFIRMATION';
+export const RECEIVE_AFFIRMATIONS = 'RECEIVE_AFFIRMATIONS';
+export const START_LOADING_ALL_AFFIRMATIONS = 'START_LOADING_ALL_AFFIRMATIONS';
 
-export const receiveAffirmation = affirmation => ({
-  type: RECEIVE_AFFIRMATION,
-  affirmation
+export const receiveAffirmations = affirmations => ({
+  type: RECEIVE_AFFIRMATIONS,
+  affirmations
 });
 
-export const startLoadingRandomAffirmation = () => ({
-  type: START_LOADING_RANDOM_AFFIRMATION
+export const startLoadingAllAffirmations = () => ({
+  type: START_LOADING_ALL_AFFIRMATIONS
 });
 
-export const fetchRandom = () => dispatch => {
+export const fetchAllAffirmations = () => dispatch => {
   // Signal that we are starting our async call
-  dispatch(startLoadingRandomAffirmation());
+  dispatch(startLoadingAllAffirmations());
   return (
-    affirmationUtil.fetchRandom().then(affirmation => (
-      dispatch(receiveAffirmation(affirmation))
+    affirmationUtil.fetchAllAffirmations().then(affirmations => (
+      dispatch(receiveAffirmations(affirmations))
     ))
   );
 };

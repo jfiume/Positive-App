@@ -5,7 +5,7 @@ import UserReducer from './user_reducer';
 import loadingReducer from './loading_reducer';
 
 const RootReducer = combineReducers({
-  affirmation: AffirmationReducer,
+  affirmations: AffirmationReducer,
   user: UserReducer,
   loadingStatus: loadingReducer,
 });

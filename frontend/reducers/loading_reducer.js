@@ -1,4 +1,4 @@
-import { RECEIVE_AFFIRMATION, START_LOADING_RANDOM_AFFIRMATION } from '../actions/affirmation_actions';
+import { RECEIVE_AFFIRMATIONS, START_LOADING_ALL_AFFIRMATIONS } from '../actions/affirmation_actions';
 import { RECIEVE_USER, START_LOADING_USER } from '../actions/affirmation_actions';
 
 const initialState = {
@@ -8,11 +8,11 @@ const initialState = {
 const loadingReducer = (state = initialState, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_AFFIRMATION:
+    case RECEIVE_AFFIRMATIONS:
       return Object.assign({}, state, { loading: false });
     case RECIEVE_USER:
       return Object.assign({}, state, { loading: false });
-    case START_LOADING_RANDOM_AFFIRMATION:
+    case START_LOADING_ALL_AFFIRMATIONS:
       return Object.assign({}, state, { loading: true });
     case START_LOADING_USER:
       return Object.assign({}, state, { loading: true });

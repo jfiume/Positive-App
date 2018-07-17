@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import RNShakeEvent from 'react-native-shake-event';
 
 import { connect } from 'react-redux';
-import { fetchRandom } from '../actions/affirmation_actions';
+import { fetchAllAffirmations } from '../actions/affirmation_actions';
 import { fetchUser } from '../actions/user_actions';
 
 class PositivePage extends Component {
@@ -15,7 +15,7 @@ class PositivePage extends Component {
   componentWillMount() {
     this._retrieveData();
     RNShakeEvent.addEventListener('shake', () => {
-      this.props.fetchRandom();
+      this.props.fetchAllAffirmations();
     });
   }
 
@@ -39,12 +39,12 @@ class PositivePage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchRandom();
+    this.props.fetchAllAffirmations();
   }
 
   componentWillUpdate(nextProps) {
     const { loading } = this.props.loadingStatus;
-    if (!loading && Object.values(this.props.affirmation).length > 0 && Object.keys(nextProps.user).length < 1) {
+    if (!loading && Object.values(this.props.affirmations).length > 0 && Object.keys(nextProps.user).length < 1) {
       this.props.navigation.navigate('WelcomePage');
     }
   }
@@ -52,10 +52,10 @@ class PositivePage extends Component {
   render() {
     const { loading } = this.props.loadingStatus;
     // We have to make sure our asynchronous fetch call has returned data before we can render
-    if (!loading && Object.values(this.props.affirmation).length > 0 && Object.keys(this.props.user).length > 0) {
-      const affirmation = this.props.affirmation;
+    if (!loading && Object.values(this.props.affirmations).length > 0 && Object.keys(this.props.user).length > 0) {
+      const affirmations = this.props.affirmations;
       const user = this.props.user.name;
-      // select the random affirmation from the front end
+      // select the random affirmations from the front end
       const affirmationKey = this.props.affirmationKey;
       return (
         <PhoneScreen>
@@ -63,7 +63,7 @@ class PositivePage extends Component {
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good Day {user}</Heading>
-        <Affirmation>{affirmation[affirmationKey].body}</Affirmation>
+        <Affirmation>{affirmations[affirmationKey].body}</Affirmation>
       </PhoneScreen>
       )
     } else {
@@ -74,18 +74,18 @@ class PositivePage extends Component {
   }
 }
 
-const mapStateToProps = ({ user, affirmation, loadingStatus }) => {
+const mapStateToProps = ({ user, affirmations, loadingStatus }) => {
   return {
     user,
-    affirmation,
+    affirmations,
     loadingStatus,
-    affirmationKey: randomSelector(affirmation)
+    affirmationKey: randomSelector(affirmations)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchRandom: () => dispatch(fetchRandom()),
+    fetchAllAffirmations: () => dispatch(fetchAllAffirmations()),
     fetchUser: id => dispatch(fetchUser(id))
   };
 };
@@ -95,8 +95,8 @@ export default connect(
   mapDispatchToProps
 )(PositivePage);
 
-const randomSelector = (affirmation) => {
-  const random = Math.floor(Math.random() * Object.keys(affirmation).length);
+const randomSelector = (affirmations) => {
+  const random = Math.floor(Math.random() * Object.keys(affirmations).length);
   return random;
 };
 
