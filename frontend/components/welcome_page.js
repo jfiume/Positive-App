@@ -109,22 +109,25 @@ const WelcomeGreeting = styled.Text`
 
 const NameInput = styled.TextInput`
   position: relative;
-  top: 170%;
+  margin: 10px;
   color: black;
+  width: 200px;
+  text-align: center;
 `;
 
 const SubmitButton = styled.TouchableOpacity`
   align-items: center;
   position: absolute;
-  top: 10%;
+  top: 35%;
   flex: 1;
 `;
 
 const SubmitButtonBackground = styled.View`
   alignItems: center;
   backgroundColor: #2196F3;
-  position: absolute;
-  top: 170%;
+  position: relative;
+  margin: 10px;
+  width: 200px;
 `;
 
 const SubmitButtonText = styled.Text`
