@@ -16,6 +16,7 @@ class WelcomePage extends Component {
   }
 
   async _storeData(user) {
+    // Saving the current user's ID in the AsyncStorage for the next time they open the app
     const userId = user.user._id
     try {
       await AsyncStorage.setItem('userId', userId);

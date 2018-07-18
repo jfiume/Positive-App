@@ -25,11 +25,13 @@ class PositivePage extends Component {
 
   async _retrieveData() {
     try {
-      // Saving the current user's ID in the AsyncStorage for the next time they open the app
+      // retrieving the previous user's ID from the AsyncStorage
       const id = await AsyncStorage.getItem('userId');
       if (id) {
+        // fetch me the previous user
         this.props.fetchUser(id);
       } else {
+        // erase all previous data from AsyncStorage if no user is found
         AsyncStorage.clear([callback]: ?(error: ?Error) => void)
       }
     } catch (error) {
@@ -55,15 +57,15 @@ class PositivePage extends Component {
     if (!loading && Object.values(this.props.affirmations).length > 0 && Object.keys(this.props.user).length > 0) {
       const affirmations = this.props.affirmations;
       const user = this.props.user.name;
-      // select the random affirmations from the front end
-      const affirmationKey = this.props.affirmationKey;
+      // select the random affirmation index from the front end
+      const affirmationIndex = this.props.affirmationIndex;
       return (
         <PhoneScreen>
           <BackgroundImg
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good Day {user}</Heading>
-        <Affirmation>{affirmations[affirmationKey].body}</Affirmation>
+        <Affirmation>{affirmations[affirmationIndex].body}</Affirmation>
       </PhoneScreen>
       )
     } else {
@@ -79,7 +81,7 @@ const mapStateToProps = ({ user, affirmations, loadingStatus }) => {
     user,
     affirmations,
     loadingStatus,
-    affirmationKey: randomSelector(affirmations)
+    affirmationIndex: randomIndexSelector(affirmations)
   };
 };
 
@@ -95,7 +97,7 @@ export default connect(
   mapDispatchToProps
 )(PositivePage);
 
-const randomSelector = (affirmations) => {
+const randomIndexSelector = (affirmations) => {
   const random = Math.floor(Math.random() * Object.keys(affirmations).length);
   return random;
 };
