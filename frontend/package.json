@@ -10,7 +10,6 @@
     "redux-logger": "^3.0.6"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
-  "proxy-polyfill": "http://localhost:5000",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",

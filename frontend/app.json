@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "PositiveApp",
+    "sdkVersion": "27.0.0",
+		"description": "Basic app",
+		"version": "1.0.1",
+		"orientation": "portrait",
+		"ios": {
+			"bundleIdentifier": "com.joefiume.PositiveApp"
+		},
+		"android": {
+			"package": "com.joefiume.PositiveApp"
+    }
   }
 }

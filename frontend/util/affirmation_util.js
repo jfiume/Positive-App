@@ -1,8 +1,8 @@
 // // Asynchronously fetch a random affirmation
 export const fetchAllAffirmations = async function() {
   try {
-    var response = await fetch("http://localhost:5000/affirmation/random");
-    // var response = await fetch("/affirmation/random");
+    // var response = await fetch("http://localhost:5000/affirmation/random");
+    var response = await fetch("/affirmation/random");
     const affirmations = await response.json();
     return affirmations;
   } catch (e) {
