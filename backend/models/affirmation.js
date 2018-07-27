@@ -8,3 +8,13 @@ var affirmationSchema = mongoose.Schema({
 var Affirmation = mongoose.model("Affirmation", affirmationSchema);
 
 module.exports = Affirmation;
+
+
+const affirmations = [
+  { body: "Today is a good day" },
+  { body: "You are the perfect you" },
+  { body: "You are great!" }
+];
+
+
+Affirmation.insertMany(affirmations);

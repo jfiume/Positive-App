@@ -71,4 +71,3 @@ createUserFun() {
 ## npm
 
 Node package manager (npm) is used to install all of the dependencies.
-Concurrently is used to load both the backend and frontend servers simultaneously.
