@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Affirmation = require('../models/affirmation.js');
-var db = require('../index.js');
 
 const affirmations = [
   { body: "Today is a good day" },
@@ -39,7 +38,7 @@ router.get('/seed', function(req, res) {
 
 // Get all affirmations
 router.get('/', function(req, res) {
-  db.Affirmation.find(function(err, response) {
+  Affirmation.find(function(err, response) {
     res.json(response);
   });
 });
