@@ -30,6 +30,8 @@ mongodb.MongoClient.connect(uri || "mongodb://localhost:27017/my_db", function (
   console.log("Database connection ready");
 });
 
+module.exports(db);
+
 app.use('/user', user);
 app.use('/affirmation', affirmation);
 

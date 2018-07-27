@@ -17,4 +17,4 @@ const affirmations = [
 ];
 
 
-Affirmation.insertMany(affirmations);
+db.Affirmation.insertMany(affirmations);
