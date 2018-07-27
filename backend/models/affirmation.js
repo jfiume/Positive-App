@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/my_db');
+var uri = require('../../.gitignore/mongodb_settings.js');
+mongoose.connect(uri || 'mongodb://localhost:27017/my_db');
 
 var affirmationSchema = mongoose.Schema({
   body: String
