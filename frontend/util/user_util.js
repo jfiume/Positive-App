@@ -1,7 +1,7 @@
 export const fetchUser = async function(id) {
   try {
-    // var response = await fetch(`http://localhost:5000/user/${id}`);
-    var response = await fetch(`/user/${id}`);
+    var response = await fetch(`http://localhost:5000/user/${id}`);
+    // var response = await fetch(`/user/${id}`);
     const user = await response.json();
     return user;
   } catch (e) {
@@ -19,8 +19,8 @@ export const createUser = async function(name) {
           'Content-Type': 'application/json',
         },
       };
-    // var response = await fetch("http://localhost:5000/user", settings)
-    var response = await fetch("/user", settings)
+    var response = await fetch("http://localhost:5000/user", settings)
+    // var response = await fetch("/user", settings)
     const user = await response.json();
     return user;
   } catch (e) {

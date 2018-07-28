@@ -10,6 +10,7 @@ import { fetchUser } from '../actions/user_actions';
 class PositivePage extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.navigation.state);
   }
 
   componentWillMount() {
@@ -30,11 +31,10 @@ class PositivePage extends Component {
       if (id) {
         // fetch me the previous user
         this.props.fetchUser(id);
-      } else {
-        // erase all previous data from AsyncStorage if no user is found
-        AsyncStorage.clear([callback]: ?(error: ?Error) => void)
       }
     } catch (error) {
+      // erase all previous data from AsyncStorage if no user is found
+      AsyncStorage.clear([callback]: ?(error: ?Error) => void)
       // Error retrieving data
       console.log("AsyncStorage request raised an error:", e);
     }

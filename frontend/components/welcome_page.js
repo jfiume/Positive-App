@@ -1,3 +1,4 @@
+"use strict";
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
@@ -11,7 +12,7 @@ class WelcomePage extends Component {
     this.state = {
       name: ''
     };
-
+    console.log(this.props.navigation.state);
     this.createUserFun = this.createUserFun.bind(this);
   }
 
@@ -47,7 +48,7 @@ class WelcomePage extends Component {
 
   render() {
     const { loading } = this.props.loadingStatus;
-    if (!loading && Object.values(this.props.affirmation).length > 0) {
+    if (!loading && Object.values(this.props.affirmations).length > 0) {
       return (
         <PhoneScreen>
           <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
@@ -76,10 +77,10 @@ class WelcomePage extends Component {
   }
 }
 
-const mapStateToProps = ({ user, affirmation, loadingStatus }) => {
+const mapStateToProps = ({ user, affirmations, loadingStatus }) => {
   return {
     user,
-    affirmation,
+    affirmations,
     loadingStatus
   };
 };
