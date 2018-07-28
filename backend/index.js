@@ -2,19 +2,20 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
-var mongodb = require("mongodb");
+// var mongodb = require("mongodb");
 
 var app = express();
+var port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, useNewUrlParser: true }));
 app.use(upload.array());
 
 var user = require('./routes/user.js');
 var affirmation = require('./routes/affirmation.js');
 
 
-var uri = require('../.gitignore/mongodb_settings.js');
+// var uri = require('../.gitignore/mongodb_settings.js');
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 // var db;
 //
@@ -37,7 +38,6 @@ app.get('/', function(req, res){
   res.send("hello world");
 })
 
-const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Node listening on port ${port}`);

@@ -8,3 +8,19 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model("User", userSchema);
 
 module.exports = User;
+
+User.find(function(err, response) {
+  for (let j in response) {
+    response[j].remove();
+  }
+});
+
+
+const users = [
+  { name: 'Scott' },
+  { name: 'Sabrina' },
+  { name: 'Dan' },
+  { name: 'Alex' },
+];
+
+User.insertMany(users);
