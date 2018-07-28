@@ -2,9 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
-// var mongodb = require("mongodb");
 
 var app = express();
+
 var port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
@@ -38,8 +38,7 @@ app.use('/affirmation', affirmation);
 
 app.get('/', function(req, res){
   res.send("hello world");
-})
-
+});
 
 app.listen(port, () => {
   console.log(`Node listening on port ${port}`);
