@@ -47,8 +47,9 @@ class WelcomePage extends Component {
   }
 
   render() {
-    const { loading } = this.props.loadingStatus;
-    if (!loading && Object.values(this.props.affirmations).length > 0) {
+    const { loadingUser } = this.props.loadingStatus.loadingUser;
+    const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;
+    if (!loadingAffirmations && Object.values(this.props.affirmations).length > 0) {
       return (
         <PhoneScreen>
           <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>

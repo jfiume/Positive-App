@@ -45,16 +45,18 @@ class PositivePage extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    const { loading } = this.props.loadingStatus;
-    if (!loading && Object.values(this.props.affirmations).length > 0 && Object.keys(nextProps.user).length < 1) {
+    const { loadingUser } = this.props.loadingStatus.loadingUser;
+    const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;
+    if (!loadingUser && !loadingAffirmations && Object.values(this.props.affirmations).length > 0 && Object.keys(nextProps.user).length < 1) {
       this.props.navigation.navigate('WelcomePage');
     }
   }
 
   render() {
-    const { loading } = this.props.loadingStatus;
+    const { loadingUser } = this.props.loadingStatus.loadingUser;
+    const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;
     // We have to make sure our asynchronous fetch call has returned data before we can render
-    if (!loading && Object.values(this.props.affirmations).length > 0 && Object.keys(this.props.user).length > 0) {
+    if (!loadingUser && !loadingAffirmations && Object.values(this.props.affirmations).length > 0 && Object.keys(this.props.user).length > 0) {
       const affirmations = this.props.affirmations;
       const user = this.props.user.name;
       // select the random affirmation index from the front end
