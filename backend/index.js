@@ -33,6 +33,9 @@ mongodb.MongoClient.connect(uri || "mongodb://localhost:27017/my_db", function (
 
 app.use('/user', user);
 app.use('/affirmation', affirmation);
+app.get('/', function(req, res){
+  res.send("hello world");
+})
 
 const port = process.env.PORT || 5000;
 
