@@ -34,6 +34,8 @@ var affirmation = require('./routes/affirmation.js');
 
 app.use('/user', user);
 app.use('/affirmation', affirmation);
+
+
 app.get('/', function(req, res){
   res.send("hello world");
 })
