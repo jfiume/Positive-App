@@ -5,7 +5,8 @@
   "description": "",
   "engines": {
     "node": "6.10.1",
-    "npm": "3.10.10"
+    "npm": "3.10.10",
+    "yarn": "1.9.2",
   },
   "scripts": {
     "start": "node api/index.js"
