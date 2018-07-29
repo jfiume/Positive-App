@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var uri = require('../../.gitignore/mongodb_settings.js');
-mongoose.connect(uri || 'mongodb://localhost:27017/my_db');
+mongoose.connect(process.env.MONGODB_URI || uri || 'mongodb://localhost:27017/my_db');
 
 var userSchema = mongoose.Schema({
   name: String
