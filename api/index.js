@@ -14,7 +14,7 @@ app.use(upload.array());
 var user = require('./routes/user.js');
 var affirmation = require('./routes/affirmation.js');
 
-
+app.use(express.static(path.join(__dirname, 'client/build')));
 // var uri = require('../.gitignore/mongodb_settings.js');
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 // var db;
