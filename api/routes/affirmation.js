@@ -8,18 +8,6 @@ const affirmations = [
   { body: "You are great!" }
 ];
 
-// Getting all to generate the random affirmation
-router.get('/random', function(req, res) {
-  const random = Math.floor(Math.random()*affirmations.length);
-  Affirmation.find(function(err, response) {
-    if (err){
-      res.json({message: "Database error"});
-    } else {
-      res.json(response);
-    }
-  });
-});
-
 // Seed the database from the above affirmations
 router.get('/seed', function(req, res) {
   Affirmation.find(function(err, response) {

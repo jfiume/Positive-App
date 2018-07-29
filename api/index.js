@@ -32,8 +32,8 @@ var affirmation = require('./routes/affirmation.js');
 // });
 
 
-app.use('/user', user);
-app.use('/affirmation', affirmation);
+app.use('/api/user', user);
+app.use('/api/affirmation', affirmation);
 
 
 app.get('/', function(req, res){

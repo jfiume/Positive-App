@@ -3,9 +3,9 @@ var router = express.Router();
 var User = require('../models/user.js');
 
 const users = [
-  { name: 'Scott' },
-  { name: 'Sabrina' },
-  { name: 'Dan' },
+  { name: 'Superman' },
+  { name: 'Batman' },
+  { name: 'Wonder Woman' },
 ];
 
 // Seed the database from the above users

@@ -17,10 +17,9 @@ User.find(function(err, response) {
 
 
 const users = [
-  { name: 'Scott' },
-  { name: 'Sabrina' },
-  { name: 'Dan' },
-  { name: 'Alex' },
+  { name: 'Superman' },
+  { name: 'Batman' },
+  { name: 'Wonder Woman' },
 ];
 
 User.insertMany(users);
