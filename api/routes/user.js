@@ -20,7 +20,7 @@ router.get('/seed', function(req, res) {
       name: users[i].name
     });
     newUser.save();
-  }
+  };
   res.json("database seeded");
 });
 
@@ -40,9 +40,9 @@ router.post('/', function(req, res) {
         res.json({message: "Database error"});
       } else {
         res.json(User);
-      }
+      };
     });
-  }
+  };
 });
 
 //Edit a user
@@ -52,14 +52,7 @@ router.put('/:id', function(req, res) {
       res.json({message: `Error in updating user with id ${req.params.id}`});
     } else {
       res.json(response);
-    }
-  });
-});
-
-//Get all users
-router.get('/', function(req, res) {
-  User.find(function(err, response) {
-    res.json(response);
+    };
   });
 });
 
@@ -70,8 +63,27 @@ router.get('/:id', function(req, res) {
       res.json({message: `Error cannot find user with id ${req.params.id}`});
     } else {
       res.json(response);
-    }
+    };
   });
 });
+
+//Get all users
+router.get('/', function(req, res) {
+  User.find(function(err, response) {
+    res.json(response);
+  });
+});
+
+// Delete a user
+router.delete('/:id', function(req, res) {
+  User.findByIdAndRemove(req.params.id, function(err, response) {
+    if(err) {
+      res.json({message: `Error cannot find user with id ${req.params.id}`});
+    } else {
+      res.json({message: "Person with id " + req.params.id + " removed."});
+    };
+  });
+});
+
 
 module.exports = router;

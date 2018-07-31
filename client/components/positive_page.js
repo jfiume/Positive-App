@@ -10,6 +10,9 @@ import { fetchUser } from '../actions/user_actions';
 class PositivePage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userId: ""
+    };
     console.log(this.props.navigation.state);
   }
 
@@ -29,12 +32,13 @@ class PositivePage extends Component {
       // retrieving the previous user's ID from the AsyncStorage
       const id = await AsyncStorage.getItem('userId');
       if (id) {
+        this.setState({userId: id});
         // fetch me the previous user
         this.props.fetchUser(id);
       }
     } catch (error) {
       // erase all previous data from AsyncStorage if no user is found
-      AsyncStorage.clear([callback]: ?(error: ?Error) => void)
+      AsyncStorage.clear()
       // Error retrieving data
       console.log("AsyncStorage request raised an error:", e);
     }
@@ -44,12 +48,12 @@ class PositivePage extends Component {
     this.props.fetchAllAffirmations();
   }
 
-  componentWillUpdate(nextProps) {
+  componentDidUpdate(nextProps) {
     const { loadingUser } = this.props.loadingStatus.loadingUser;
     const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;
-    if (!loadingUser && !loadingAffirmations && Object.values(this.props.affirmations).length > 0 && Object.keys(nextProps.user).length < 1) {
+    if (!loadingUser && !loadingAffirmations && Object.values(this.props.affirmations).length > 0 && (this.state.userId.length < 1 || Object.keys(this.props.user).length < 1)) {
       this.props.navigation.navigate('WelcomePage');
-    }
+    };
   }
 
   render() {
@@ -66,6 +70,7 @@ class PositivePage extends Component {
           <BackgroundImg
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
+
         <Heading>Good Day {user}</Heading>
         <Affirmation>{affirmations[affirmationIndex].body}</Affirmation>
       </PhoneScreen>
@@ -111,21 +116,21 @@ const PhoneScreen = styled.View`
 
 const Heading = styled.Text`
   color: white;
-  top: 12%;
-  font-size: 30;
+  top: 10%;
+  font-size: 40;
   position: absolute;
 `;
 
 const Affirmation = styled.Text`
   color: white;
-  font-size: 40;
+  font-size: 50;
   position: absolute;
-  bottom: 12%;
+  bottom: 4%;
 `;
 
 const BackgroundImg = styled.Image`
-  width: 400;
-  height: 800;
+  width: 100%;
+  height: 120%;
   position: relative;
 `;
 

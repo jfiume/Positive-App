@@ -22,7 +22,6 @@ export const fetchUser = (id) => dispatch => {
   );
 };
 
-
 export const createUser = (name) => dispatch => (
   userUtil.createUser(name).then(user => (
     dispatch(receiveUser(user))
@@ -33,4 +32,8 @@ export const updateUser = (name) => dispatch => (
   userUtil.updateUser(name).then(user => (
     dispatch(receiveUser(user))
   ))
+);
+
+export const deleteUser = (id) => dispatch => (
+  userUtil.deleteUser(id)
 );

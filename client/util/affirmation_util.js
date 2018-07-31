@@ -7,5 +7,5 @@ export const fetchAllAffirmations = async function() {
     return affirmations;
   } catch (e) {
     console.log("API request raised an error:", e);
-  }
+  };
 };

@@ -1,4 +1,3 @@
-"use strict";
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native';
 import styled from 'styled-components';

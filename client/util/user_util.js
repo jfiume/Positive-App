@@ -6,7 +6,7 @@ export const fetchUser = async function(id) {
     return user;
   } catch (e) {
     console.log("API request raised an error:", e);
-  }
+  };
 };
 
 export const createUser = async function(name) {
@@ -25,7 +25,7 @@ export const createUser = async function(name) {
     return user;
   } catch (e) {
     console.log("API request raised an error:", e);
-  }
+  };
 };
 
 export const updateUser = async function(id, name) {
@@ -44,5 +44,21 @@ export const updateUser = async function(id, name) {
     return user;
   } catch (e) {
     console.log("API request raised an error:", e);
-  }
+  };
+};
+
+export const deleteUser = async function(id) {
+  try {
+    const settings = {
+      method: 'DELETE',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      };
+    // const response = await fetch("http://localhost:5000/api/user", settings)
+    const response = await fetch(`https://positive-app-backend.herokuapp.com/api/user/${id}`, settings)
+  } catch (e) {
+    console.log("API request raised an error:", e);
+  };
 };
