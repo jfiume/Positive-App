@@ -9,6 +9,7 @@ import { AsyncStorage } from "react-native"
 import RootReducer from './reducers/root_reducer';
 import PositivePage from './components/positive_page';
 import WelcomePage from './components/welcome_page';
+import LoadingPage from './components/loading_page';
 
 const store = createStore(RootReducer, applyMiddleware(thunk, logger));
 
@@ -24,10 +25,11 @@ export default class App extends Component {
 
 const RootStack = createStackNavigator(
   {
+    LoadingPage: LoadingPage,
     WelcomePage: WelcomePage,
     PositivePage: PositivePage,
   },
   {
-    initialRouteName: 'PositivePage',
+    initialRouteName: 'LoadingPage',
   }
 );

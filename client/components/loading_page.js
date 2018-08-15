@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, TextInput, Alert, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native';
+import { AppRegistry, AsyncStorage, ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -19,10 +19,13 @@ class LoadingPage extends Component {
     try {
       // retrieving the previous user's ID from the AsyncStorage
       const id = await AsyncStorage.getItem('userId');
+      console.log(id);
       if (id) {
-        this.setState({userId: id});
         // fetch me the previous user
         this.props.fetchUser(id);
+        this.props.navigation.navigate('PositivePage');
+      } else {
+        this.props.navigation.navigate('WelcomePage');
       }
     } catch (error) {
       // erase all previous data from AsyncStorage if no user is found
@@ -34,22 +37,20 @@ class LoadingPage extends Component {
 
   render() {
     return (
-      <ActivityIndicator size="large" color="#0000ff" />
+      <LoadingCircle />
     )
   }
 }
 
-const mapStateToProps = ({ user, affirmations, loadingStatus }) => {
+const mapStateToProps = ({ user }) => {
   return {
-    user,
-    affirmations,
-    loadingStatus
+    user
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (user) => dispatch(createUser(user))
+    fetchUser: id => dispatch(fetchUser(id))
   };
 };
 
@@ -57,5 +58,11 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoadingPage);
+
+const LoadingCircle = styled.ActivityIndicator`
+  size: large;
+  color: #0000ff;
+`;
+
 
 AppRegistry.registerComponent('PositiveApp', () => LoadingPage);
