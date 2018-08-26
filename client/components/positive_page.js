@@ -48,14 +48,6 @@ class PositivePage extends Component {
     this.props.fetchAllAffirmations();
   }
 
-  componentDidUpdate(nextProps) {
-    const { loadingUser } = this.props.loadingStatus.loadingUser;
-    const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;
-    if (!loadingUser && !loadingAffirmations && Object.values(this.props.affirmations).length > 0 && (this.state.userId.length < 1 || Object.keys(this.props.user).length < 1)) {
-      this.props.navigation.navigate('WelcomePage');
-    };
-  }
-
   render() {
     const { loadingUser } = this.props.loadingStatus.loadingUser;
     const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;

@@ -26,14 +26,6 @@ class WelcomePage extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (Object.keys(nextProps.user).length > 0) {
-      this.props.navigation.navigate('PositivePage');
-      return true;
-    }
-    return true;
-  }
-
   createUserFun() {
    const { name } = this.state;
    // prevents adding a blank name
@@ -46,34 +38,26 @@ class WelcomePage extends Component {
   }
 
   render() {
-    const { loadingUser } = this.props.loadingStatus.loadingUser;
-    const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;
-    if (!loadingAffirmations && Object.values(this.props.affirmations).length > 0) {
-      return (
-        <PhoneScreen>
-          <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
-          <SubmitButton onPress={this.createUserFun}>
-            <NameInput
-              placeholder="Please enter your name here"
-              onChangeText={(name) => this.setState({name})}
-              value={this.state.name}
-              autoCapitalize="words"
-              keyboardAppearance="default"
-              keyboardType='default'
-              autoCorrect={false}
-              autoFocus={true}
-            />
-            <SubmitButtonBackground>
-              <SubmitButtonText>Submit</SubmitButtonText>
-            </SubmitButtonBackground>
-          </SubmitButton>
-        </PhoneScreen>
-      )
-    } else {
-      return (
-        <ActivityIndicator size="large" color="#0000ff" />
-      )
-    }
+    return (
+      <PhoneScreen>
+        <WelcomeGreeting>Welcome to the PositiveApp</WelcomeGreeting>
+        <SubmitButton onPress={this.createUserFun}>
+          <NameInput
+            placeholder="Please enter your name here"
+            onChangeText={(name) => this.setState({name})}
+            value={this.state.name}
+            autoCapitalize="words"
+            keyboardAppearance="default"
+            keyboardType='default'
+            autoCorrect={false}
+            autoFocus={true}
+          />
+          <SubmitButtonBackground>
+            <SubmitButtonText>Submit</SubmitButtonText>
+          </SubmitButtonBackground>
+        </SubmitButton>
+      </PhoneScreen>
+    )
   }
 }
 

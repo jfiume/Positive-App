@@ -12,17 +12,14 @@ class LoadingPage extends Component {
   }
 
   componentWillMount() {
-    this._retrieveData();
+    this._retrieveUserId();
   }
 
-  async _retrieveData() {
+  async _retrieveUserId() {
     try {
-      // retrieving the previous user's ID from the AsyncStorage
+      // if we have the previous user id, then we execute the conditional
       const id = await AsyncStorage.getItem('userId');
-      console.log(id);
       if (id) {
-        // fetch me the previous user
-        this.props.fetchUser(id);
         this.props.navigation.navigate('PositivePage');
       } else {
         this.props.navigation.navigate('WelcomePage');
