@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, AsyncStorage, ActivityIndicator } from 'react-native';
+import { AppRegistry, AsyncStorage, ActivityIndicator, Text } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -12,21 +12,30 @@ class EditPage extends Component {
   }
 
   render() {
-    return (
-      <ActivityIndicator size="large" color="#0000ff" />
-    )
+    const { loadingUser } = this.props.loadingStatus.loadingUser;
+    if (!loadingUser && Object.keys(this.props.user).length > 0) {
+      const user = this.props.user.name;
+      return (
+        <Text>Edit Page</Text>
+      )
+    } else {
+      return (
+        <ActivityIndicator size="large" color="#0000ff" />
+      )
+    }
   }
 }
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user, loadingStatus }) => {
   return {
-    user
+    user,
+    loadingStatus,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUser: id => dispatch(fetchUser(id))
+    // fetchUser: id => dispatch(fetchUser(id))
   };
 };
 

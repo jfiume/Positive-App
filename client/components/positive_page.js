@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, AsyncStorage, ActivityIndicator } from 'react-native';
+import { AppRegistry, Text, View, Image, AsyncStorage, ActivityIndicator, Button } from 'react-native';
 import styled from 'styled-components';
 import RNShakeEvent from 'react-native-shake-event';
 
@@ -10,10 +10,20 @@ import { fetchUser } from '../actions/user_actions';
 class PositivePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userId: ""
-    };
+
     console.log(this.props.navigation.state);
+  }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerRight: (
+        <Button
+          title="Edit User"
+          color="black"
+          onPress={() => navigation.navigate('EditPage')}
+        /> //
+      )
+    }
   }
 
   componentWillMount() {
