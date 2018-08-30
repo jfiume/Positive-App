@@ -11,6 +11,7 @@ import PositivePage from './components/positive_page';
 import WelcomePage from './components/welcome_page';
 import LoadingPage from './components/loading_page';
 import EditPage from './components/edit_page';
+import DeletePage from './components/delete_page';
 
 const store = createStore(RootReducer, applyMiddleware(thunk, logger));
 
@@ -30,6 +31,7 @@ const RootStack = createStackNavigator(
     WelcomePage: WelcomePage,
     PositivePage: PositivePage,
     EditPage: EditPage,
+    DeletePage: DeletePage
   },
   {
     initialRouteName: 'LoadingPage',

@@ -4,23 +4,11 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
-class EditPage extends Component {
+class DeletePage extends Component {
   constructor(props) {
     super(props);
 
     console.log(this.props.navigation.state);
-  }
-
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerRight: (
-        <Button
-          title="Delete User"
-          color="black"
-          onPress={() => navigation.navigate('DeletePage')}
-        /> //
-      )
-    }
   }
 
   render() {
@@ -28,7 +16,7 @@ class EditPage extends Component {
     if (!loadingUser && Object.keys(this.props.user).length > 0) {
       const user = this.props.user.name;
       return (
-        <Text>Edit Page</Text>
+        <Text>Delete Page</Text>
       )
     } else {
       return (
@@ -54,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditPage);
+)(DeletePage);
 
 
-AppRegistry.registerComponent('PositiveApp', () => EditPage);
+AppRegistry.registerComponent('PositiveApp', () => DeletePage);
