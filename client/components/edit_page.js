@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, AsyncStorage, ActivityIndicator, Text } from 'react-native';
+import { AppRegistry, AsyncStorage, ActivityIndicator, Text, Button } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';

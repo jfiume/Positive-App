@@ -58,8 +58,6 @@ export default connect(
 )(LoadingPage);
 
 const LoadingCircle = styled.ActivityIndicator`
-  size: large;
-  color: #0000ff;
 `;
 
 
