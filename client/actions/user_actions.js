@@ -28,8 +28,8 @@ export const createUser = (name) => dispatch => (
   ))
 );
 
-export const updateUser = (name) => dispatch => (
-  userUtil.updateUser(name).then(user => (
+export const updateUser = (id, name) => dispatch => (
+  userUtil.updateUser(id, name).then(user => (
     dispatch(receiveUser(user))
   ))
 );

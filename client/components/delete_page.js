@@ -14,7 +14,6 @@ class DeletePage extends Component {
   }
 
   deleteUser(id, e) {
-    console.log(id);
     this.props.deleteUser(id);
     AsyncStorage.clear();
     this.props.navigation.navigate('WelcomePage');
