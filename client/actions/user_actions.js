@@ -30,7 +30,7 @@ export const createUser = (name) => dispatch => (
 
 export const updateUser = (id, name) => dispatch => (
   userUtil.updateUser(id, name).then(user => (
-    dispatch(receiveUser(user))
+    dispatch(fetchUser(user._id))
   ))
 );
 
