@@ -46,7 +46,7 @@ const affirmations = [
   { body: "You move beyond stress to peace" },
   { body: "Today your thoughts are positive and full of joy" },
   { body: "You are unique and a gift to the world" },
-  { body: "You are creating the career of your dreams" }
+  { body: "You are creating the career of your dreams" },
   { body: "There are no limits to what you can achieve" },
   { body: "Positive energy surrounds you" },
   { body: "Your career will be the one of your dreams" },
