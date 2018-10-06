@@ -29,7 +29,7 @@ class WelcomePage extends Component {
   createUserFun() {
    const { name } = this.state;
    // prevents adding a blank name
-   if (name === "") {
+   if (!name) {
      return;
    }
    const user = { name: name };
@@ -90,7 +90,7 @@ const PhoneScreen = styled.View`
 const WelcomeGreeting = styled.Text`
   color: black;
   font-size: 30;
-  top: 20%;
+  top: 15%;
   position: absolute;
 `;
 
@@ -98,7 +98,7 @@ const NameInput = styled.TextInput`
   position: relative;
   margin: 10px;
   color: white;
-  top: 20%;
+  top: 10%;
   font-size: 24px;
   width: 300px;
   height: 60px;
@@ -108,7 +108,7 @@ const NameInput = styled.TextInput`
 const SubmitButton = styled.TouchableOpacity`
   align-items: center;
   position: absolute;
-  top: 35%;
+  top: 30%;
   flex: 1;
 `;
 

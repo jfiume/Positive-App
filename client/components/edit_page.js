@@ -30,7 +30,7 @@ class EditPage extends Component {
   editUser(id, e) {
     const { name } = this.state;
     // prevents adding a blank name
-    if (name === "") {
+    if (!name) {
       return;
     }
     const user = { name: name };

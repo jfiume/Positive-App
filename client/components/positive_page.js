@@ -10,8 +10,8 @@ import { fetchUser } from '../actions/user_actions';
 class PositivePage extends Component {
   constructor(props) {
     super(props);
-
     console.log(this.props.navigation.state);
+    this.dayTime = this.dayTime.bind(this);
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -64,7 +64,20 @@ class PositivePage extends Component {
     }
   }
 
+  dayTime() {
+    const now = new Date();
+    const time = now.getHours();
+    if (time < 12) {
+      return "Morning"
+    } else if (time >= 12 && time < 17) {
+      return "Afternoon"
+    } else {
+      return "Evening"
+    }
+  }
+
   render() {
+    const day = this.dayTime();
     const { loadingUser } = this.props.loadingStatus.loadingUser;
     const { loadingAffirmations } = this.props.loadingStatus.loadingAffirmations;
     // We have to make sure our asynchronous fetch call has returned data before we can render
@@ -79,7 +92,7 @@ class PositivePage extends Component {
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/c_scale,w_400/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
 
-        <Heading>Good Day {user}</Heading>
+        <Heading>Good {day} {user}</Heading>
         <Affirmation>{affirmations[affirmationIndex].body}</Affirmation>
       </PhoneScreen>
       )
