@@ -12,7 +12,7 @@ class EditPage extends Component {
     this.state = {
       name: ''
     };
-    console.log(this.props.navigation.state);
+    // console.log(this.props.navigation.state);
     this.editUser = this.editUser.bind(this);
   }
 

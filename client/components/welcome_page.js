@@ -12,7 +12,7 @@ class WelcomePage extends Component {
     this.state = {
       name: ''
     };
-    console.log(this.props.navigation.state);
+    // console.log(this.props.navigation.state);
     this.createUserFun = this.createUserFun.bind(this);
   }
 

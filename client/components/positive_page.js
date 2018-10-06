@@ -11,7 +11,8 @@ import { Spinner, PhoneScreen } from './loading_page';
 class PositivePage extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.navigation.state);
+    
+    // console.log(this.props.navigation.state);
     this.dayTime = this.dayTime.bind(this);
   }
 

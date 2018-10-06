@@ -10,7 +10,7 @@ class DeletePage extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.navigation.state);
+    // console.log(this.props.navigation.state);
     this.deleteUse = this.deleteUser.bind(this);
   }
 

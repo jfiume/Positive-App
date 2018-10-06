@@ -8,7 +8,7 @@ class LoadingPage extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.navigation.state);
+    // console.log(this.props.navigation.state);
   }
 
   componentWillMount() {
@@ -19,7 +19,7 @@ class LoadingPage extends Component {
     try {
       // if we have the previous user id, then we execute the conditional
       const id = await AsyncStorage.getItem('userId');
-      console.log(id);
+      // console.log(id);
       if (id) {
         this.props.navigation.navigate('PositivePage');
       } else {
