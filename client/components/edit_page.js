@@ -77,7 +77,6 @@ const mapStateToProps = ({ user, loadingStatus }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchUser: id => dispatch(fetchUser(id))
     updateUser: (id, name) => dispatch(updateUser(id, name))
   };
 };
@@ -90,7 +89,7 @@ export default connect(
 const PhoneScreen = styled.View`
   flex: 1;
   align-items: center;
-  background-color: lightblue;
+  background-color: lightskyblue;
 `;
 
 const NameInput = styled.TextInput`

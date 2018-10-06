@@ -24,14 +24,14 @@ class DeletePage extends Component {
     if (!loadingUser && Object.keys(this.props.user).length > 0) {
       const user = this.props.user.name;
       return (
-        <View>
-          <Text>Are you sure you want to permenently delete your profile?</Text>
-          <TouchableOpacity onPress={(e) => this.deleteUser(this.props.user._id ,e)}>
-            <View>
-              <Text>Delete</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <PhoneScreen>
+          <DeleteWarning>Are you sure you want to permenently delete your profile?</DeleteWarning>
+          <DeleteButton onPress={(e) => this.deleteUser(this.props.user._id ,e)}>
+            <DeleteButtonBackground>
+              <DeleteButtonText>Delete</DeleteButtonText>
+            </DeleteButtonBackground>
+          </DeleteButton>
+        </PhoneScreen>
       )
     } else {
       return (
@@ -50,7 +50,6 @@ const mapStateToProps = ({ user, loadingStatus }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchUser: id => dispatch(fetchUser(id))
     deleteUser: (id) => dispatch(deleteUser(id))
   };
 };
@@ -60,5 +59,40 @@ export default connect(
   mapDispatchToProps
 )(DeletePage);
 
+const PhoneScreen = styled.View`
+  flex: 1;
+  align-items: center;
+  background-color: lightskyblue;
+`;
+
+const DeleteWarning = styled.Text`
+  color: black;
+  font-size: 24px;
+  top: 30%;
+  position: absolute;
+`;
+
+const DeleteButton = styled.TouchableOpacity`
+  align-items: center;
+  position: absolute;
+  top: 40%;
+  flex: 1;
+`;
+
+const DeleteButtonBackground = styled.View`
+  align-items: center;
+  background-color: firebrick;
+  position: relative;
+  margin: 10px;
+  width: 300px;
+  height: 80px;
+`;
+
+const DeleteButtonText = styled.Text`
+  font-size: 20px;
+  padding: 30px;
+  color: white;
+  font-weight: bold;
+`;
 
 AppRegistry.registerComponent('PositiveApp', () => DeletePage);
