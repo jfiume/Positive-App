@@ -43,22 +43,22 @@ class EditPage extends Component {
     if (!loadingUser && Object.keys(this.props.user).length > 0) {
       const user = this.props.user.name;
       return (
-        <View>
-          <TextInput
-          placeholder="Please enter your new name here"
-          onChangeText={(name) => this.setState({name})}
-          value={this.state.name}
-          autoCapitalize="words"
-          keyboardAppearance="default"
-          keyboardType='default'
-          autoCorrect={false}
-          autoFocus={true}/>
-          <TouchableOpacity onPress={(e) => this.editUser(this.props.user._id, e)}>
-            <View>
-              <Text>Update</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <PhoneScreen>
+          <NameInput
+            placeholder="Please enter your new name here"
+            onChangeText={(name) => this.setState({name})}
+            value={this.state.name}
+            autoCapitalize="words"
+            keyboardAppearance="default"
+            keyboardType='default'
+            autoCorrect={false}
+            autoFocus={true}/>
+          <UpdateButton onPress={(e) => this.editUser(this.props.user._id, e)}>
+            <UpdateButtonBackground>
+              <UpdateButtonText>Update</UpdateButtonText>
+            </UpdateButtonBackground>
+          </UpdateButton>
+        </PhoneScreen>
       )
     } else {
       return (
@@ -87,5 +87,44 @@ export default connect(
   mapDispatchToProps
 )(EditPage);
 
+const PhoneScreen = styled.View`
+  flex: 1;
+  align-items: center;
+  background-color: lightblue;
+`;
+
+const NameInput = styled.TextInput`
+  position: relative;
+  margin: 10px;
+  color: white;
+  top: 30%;
+  font-size: 24px;
+  width: 300px;
+  height: 60px;
+  text-align: center;
+`;
+
+const UpdateButton = styled.TouchableOpacity`
+  align-items: center;
+  position: absolute;
+  top: 40%;
+  flex: 1;
+`;
+
+const UpdateButtonBackground = styled.View`
+  align-items: center;
+  background-color: blueviolet;
+  position: relative;
+  margin: 10px;
+  width: 300px;
+  height: 80px;
+`;
+
+const UpdateButtonText = styled.Text`
+  font-size: 20px;
+  padding: 30px;
+  color: white;
+  font-weight: bold;
+`;
 
 AppRegistry.registerComponent('PositiveApp', () => EditPage);

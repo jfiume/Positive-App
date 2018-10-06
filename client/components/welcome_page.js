@@ -110,8 +110,8 @@ const SubmitButton = styled.TouchableOpacity`
 `;
 
 const SubmitButtonBackground = styled.View`
-  alignItems: center;
-  backgroundColor: #2196F3;
+  align-items: center;
+  background-color: #2196F3;
   position: relative;
   margin: 10px;
   width: 200px;
