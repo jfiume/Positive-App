@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, AsyncStorage, ActivityIndicator, Text, View, TouchableOpacity } from 'react-native';
+import { AppRegistry, AsyncStorage, ActivityIndicator, Text, View, TouchableOpacity, Alert } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -14,9 +14,19 @@ class DeletePage extends Component {
   }
 
   deleteUser(id, e) {
-    this.props.deleteUser(id);
-    AsyncStorage.clear();
-    this.props.navigation.navigate('WelcomePage');
+    Alert.alert(
+      'Delete Profile',
+      'Are you sure you want to delete your profile?',
+      [
+        {text: 'Yes', onPress: () => {
+          this.props.deleteUser(id);
+          AsyncStorage.clear();
+          this.props.navigation.navigate('WelcomePage');
+        }},
+        {text: 'No', onPress: () => this.props.navigation.navigate('PositivePage')},
+      ],
+      { cancelable: false }
+    )
   }
 
   render() {
@@ -67,7 +77,7 @@ const PhoneScreen = styled.View`
 
 const DeleteWarning = styled.Text`
   color: black;
-  font-size: 24px;
+  font-size: 20px;
   top: 30%;
   position: absolute;
 `;

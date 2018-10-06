@@ -97,8 +97,11 @@ const WelcomeGreeting = styled.Text`
 const NameInput = styled.TextInput`
   position: relative;
   margin: 10px;
-  color: black;
-  width: 200px;
+  color: white;
+  top: 20%;
+  font-size: 24px;
+  width: 300px;
+  height: 60px;
   text-align: center;
 `;
 
@@ -114,12 +117,13 @@ const SubmitButtonBackground = styled.View`
   background-color: #2196F3;
   position: relative;
   margin: 10px;
-  width: 200px;
+  width: 300px;
 `;
 
 const SubmitButtonText = styled.Text`
   padding: 20px;
   color: white;
+  font-size: 20px;
 `;
 
 
