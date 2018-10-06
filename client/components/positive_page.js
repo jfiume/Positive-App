@@ -11,7 +11,7 @@ import { Spinner, PhoneScreen } from './loading_page';
 class PositivePage extends Component {
   constructor(props) {
     super(props);
-    
+
     // console.log(this.props.navigation.state);
     this.dayTime = this.dayTime.bind(this);
   }
@@ -50,7 +50,8 @@ class PositivePage extends Component {
       }
     } catch (error) {
       // erase all previous data from AsyncStorage if no user is found
-      AsyncStorage.clear()
+      AsyncStorage.clear();
+      this.props.navigation.navigate('WelcomePage');
       // Error retrieving data
       console.log("AsyncStorage request raised an error:", e);
     }
