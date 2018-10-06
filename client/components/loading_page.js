@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, AsyncStorage, ActivityIndicator } from 'react-native';
+import { AppRegistry, AsyncStorage, View, ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
@@ -35,7 +35,9 @@ class LoadingPage extends Component {
 
   render() {
     return (
-      <LoadingCircle />
+      <Spinner>
+        <ActivityIndicator size="large" color="#00ff00" />
+      </Spinner>
     )
   }
 }
@@ -57,8 +59,17 @@ export default connect(
   mapDispatchToProps
 )(LoadingPage);
 
-const LoadingCircle = styled.ActivityIndicator`
+export const Spinner = styled.View`
+  flex: 1;
+  align-items: center;
+  position: relative;
+  top: 40%;
 `;
 
+export const PhoneScreen = styled.View`
+  flex: 1;
+  align-items: center;
+  background-color: skyblue;
+`;
 
 AppRegistry.registerComponent('PositiveApp', () => LoadingPage);

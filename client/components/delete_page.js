@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 import { deleteUser } from '../actions/user_actions';
+import { Spinner, PhoneScreen } from './loading_page';
 
 class DeletePage extends Component {
   constructor(props) {
@@ -18,14 +19,18 @@ class DeletePage extends Component {
       'Delete Profile',
       'Are you sure you want to delete your profile?',
       [
-        {text: 'Yes', onPress: () => {
+        {
+          text: 'Yes', onPress: () => {
           this.props.deleteUser(id);
           AsyncStorage.clear();
           this.props.navigation.navigate('WelcomePage');
-        }},
-        {text: 'No', onPress: () => this.props.navigation.navigate('PositivePage')},
+        }
+      },
+        {
+          text: 'No', onPress: () => this.props.navigation.navigate('PositivePage')
+        },
       ],
-      { cancelable: false }
+      { cancelable: true }
     )
   }
 
@@ -45,7 +50,9 @@ class DeletePage extends Component {
       )
     } else {
       return (
-        <ActivityIndicator size="large" color="#0000ff" />
+        <Spinner>
+          <ActivityIndicator size="large" color="#00ff00" />
+        </Spinner>
       )
     }
   }
@@ -68,12 +75,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(DeletePage);
-
-const PhoneScreen = styled.View`
-  flex: 1;
-  align-items: center;
-  background-color: lightskyblue;
-`;
 
 const DeleteWarning = styled.Text`
   color: black;

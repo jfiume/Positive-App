@@ -6,6 +6,7 @@ import RNShakeEvent from 'react-native-shake-event';
 import { connect } from 'react-redux';
 import { fetchAllAffirmations } from '../actions/affirmation_actions';
 import { fetchUser } from '../actions/user_actions';
+import { Spinner, PhoneScreen } from './loading_page';
 
 class PositivePage extends Component {
   constructor(props) {
@@ -98,7 +99,9 @@ class PositivePage extends Component {
       )
     } else {
       return (
-        <ActivityIndicator size="large" color="#0000ff" />
+        <Spinner>
+          <ActivityIndicator size="large" color="#00ff00" />
+        </Spinner>
       )
     }
   }
@@ -130,16 +133,12 @@ const randomIndexSelector = (affirmations) => {
   return random;
 };
 
-const PhoneScreen = styled.View`
-  flex: 1;
-  align-items: center;
-`;
-
 const Heading = styled.Text`
   color: white;
   top: 10%;
   font-size: 40;
   position: absolute;
+  text-align: center;
 `;
 
 const Affirmation = styled.Text`

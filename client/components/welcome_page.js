@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 import { createUser } from '../actions/user_actions';
+import { Spinner, PhoneScreen } from './loading_page';
 
 class WelcomePage extends Component {
   constructor(props) {
@@ -79,13 +80,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(WelcomePage);
-
-
-const PhoneScreen = styled.View`
-  flex: 1;
-  align-items: center;
-  background-color: skyblue;
-`;
 
 const WelcomeGreeting = styled.Text`
   color: black;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 import { updateUser } from '../actions/user_actions';
+import { Spinner, PhoneScreen } from './loading_page';
 
 class EditPage extends Component {
   constructor(props) {
@@ -62,7 +63,9 @@ class EditPage extends Component {
       )
     } else {
       return (
-        <ActivityIndicator size="large" color="#0000ff" />
+        <Spinner>
+          <ActivityIndicator size="large" color="#00ff00" />
+        </Spinner>
       )
     }
   }
@@ -85,12 +88,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(EditPage);
-
-const PhoneScreen = styled.View`
-  flex: 1;
-  align-items: center;
-  background-color: lightskyblue;
-`;
 
 const NameInput = styled.TextInput`
   position: relative;
