@@ -8,17 +8,4 @@ var User = mongoose.model("User", userSchema);
 
 module.exports = User;
 
-User.find(function(err, response) {
-  for (let j in response) {
-    response[j].remove();
-  }
-});
-
-
-const users = [
-  { name: 'Superman' },
-  { name: 'Batman' },
-  { name: 'Wonder Woman' },
-];
-
 User.insertMany(users);
