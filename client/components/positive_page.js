@@ -48,6 +48,12 @@ class PositivePage extends Component {
         this.setState({userId: id});
         // fetch me the previous user
         this.props.fetchUser(id);
+        // if we are unable to fetch the previous user
+        const { loadingUser } = this.props.loadingStatus.loadingUser;
+        if (!loadingUser && !this.props.user) {
+          AsyncStorage.clear();
+          this.props.navigation.navigate('WelcomePage');
+        }
       }
     } catch (error) {
       // erase all previous data from AsyncStorage if no user is found
