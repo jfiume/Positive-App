@@ -30,7 +30,8 @@ class WelcomePage extends Component {
   createUserFun() {
    const { name } = this.state;
    // prevents adding a blank name
-   if (!name) {
+   // prevents adding the name "Not In Database"
+   if (!name || name === "Not In Database") {
      return;
    }
    const user = { name: name };
