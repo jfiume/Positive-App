@@ -31,6 +31,7 @@ class PositivePage extends Component {
   componentWillMount() {
     this._retrieveData();
     RNShakeEvent.addEventListener('shake', () => {
+      console.log('Device shake!');
       this.props.fetchAllAffirmations();
     });
   }
@@ -51,7 +52,6 @@ class PositivePage extends Component {
     } catch (error) {
       // erase all previous data from AsyncStorage if no user is found
       AsyncStorage.clear();
-      this.props.navigation.navigate('WelcomePage');
       // Error retrieving data
       console.log("AsyncStorage request raised an error:", e);
     }

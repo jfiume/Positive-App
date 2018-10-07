@@ -4,7 +4,8 @@
     "sdkVersion": "27.0.0",
     "description": "Basic appPositiveApp is a mobile app built on React Native for iOS and Android that displays a positive affirmation every time you open it.\n",
     "version": "1.0.1",
-    "orientation": "portrait",
+    "privacy": "public",
+    "orientation": "default",
     "ios": {
       "bundleIdentifier": "com.joefiume.PositiveApp"
     },
