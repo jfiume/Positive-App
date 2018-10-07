@@ -3,6 +3,7 @@ import { AppRegistry, AsyncStorage, View, ActivityIndicator } from 'react-native
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
+import { fetchUser } from '../actions/user_actions';
 
 class LoadingPage extends Component {
   constructor(props) {

@@ -45,15 +45,8 @@ class PositivePage extends Component {
       // retrieving the previous user's ID from the AsyncStorage
       const id = await AsyncStorage.getItem('userId');
       if (id) {
-        this.setState({userId: id});
         // fetch me the previous user
         this.props.fetchUser(id);
-        // if we are unable to fetch the previous user
-        const { loadingUser } = this.props.loadingStatus.loadingUser;
-        if (!loadingUser && Object.keys(this.props.user).length === 0) {
-          AsyncStorage.clear();
-          this.props.navigation.navigate('WelcomePage');
-        }
       }
     } catch (error) {
       // erase all previous data from AsyncStorage if no user is found
@@ -68,7 +61,10 @@ class PositivePage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!this.props.user) {
+    // if we are unable to fetch the previous user
+    const { loadingUser } = this.props.loadingStatus.loadingUser;
+    if (!loadingUser && this.props.user.name === "Not In Database") {
+      AsyncStorage.clear();
       this.props.navigation.navigate('WelcomePage');
     }
   }

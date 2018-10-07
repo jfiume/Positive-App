@@ -1,5 +1,5 @@
 import { RECEIVE_AFFIRMATIONS, START_LOADING_ALL_AFFIRMATIONS } from '../actions/affirmation_actions';
-import { RECIEVE_USER, START_LOADING_USER } from '../actions/affirmation_actions';
+import { RECIEVE_USER, START_LOADING_USER } from '../actions/user_actions';
 
 const initialState = {
   loadingUser: false,
