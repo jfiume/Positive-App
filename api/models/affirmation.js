@@ -7,5 +7,3 @@ var affirmationSchema = mongoose.Schema({
 var Affirmation = mongoose.model("Affirmation", affirmationSchema);
 
 module.exports = Affirmation;
-
-Affirmation.insertMany(affirmations);
