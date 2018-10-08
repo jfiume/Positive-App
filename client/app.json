@@ -6,6 +6,7 @@
     "version": "1.0.1",
     "privacy": "public",
     "orientation": "default",
+    "icon": "https://res.cloudinary.com/pancake/image/upload/c_scale,h_1024,w_1024/v1539040557/PositiveApp_Icon.png",
     "ios": {
       "bundleIdentifier": "com.joefiume.PositiveApp"
     },
