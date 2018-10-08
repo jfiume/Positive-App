@@ -57,7 +57,9 @@ class PositivePage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllAffirmations();
+    if (Object.values(this.props.affirmations).length < 1) {
+      this.props.fetchAllAffirmations();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -96,7 +98,6 @@ class PositivePage extends Component {
           <BackgroundImg
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/c_scale,w_400/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
-
         <Heading>Good {day} {user}</Heading>
         <Affirmation>{affirmations[affirmationIndex].body}</Affirmation>
       </PhoneScreen>

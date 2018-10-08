@@ -3,7 +3,7 @@ import { AppRegistry, AsyncStorage, View, ActivityIndicator } from 'react-native
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
-import { fetchUser } from '../actions/user_actions';
+import { fetchAllAffirmations } from '../actions/affirmation_actions';
 
 class LoadingPage extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class LoadingPage extends Component {
 
   componentWillMount() {
     this._retrieveUserId();
+    this.props.fetchAllAffirmations();
   }
 
   async _retrieveUserId() {
@@ -51,7 +52,7 @@ const mapStateToProps = ({ user }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUser: id => dispatch(fetchUser(id))
+    fetchAllAffirmations: () => dispatch(fetchAllAffirmations()),
   };
 };
 
