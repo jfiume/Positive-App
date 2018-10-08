@@ -2,7 +2,7 @@ export const affirmations = [
   { body: "Today is a good day" },
   { body: "You are the perfect you" },
   { body: "You are great!" },
-  { body: "You are love. You have purpose. You were made with divine intention." },
+  { body: "You deserve to be happy" },
   { body: "You can and you will" },
   { body: "You are a superhero" },
   { body: "You don't need to compare yourself to others" },
@@ -48,7 +48,7 @@ export const affirmations = [
   { body: "Your career will be the one of your dreams" },
   { body: "When opportunity knocks you will be prepared to answer the door" },
   { body: "You have all the power you need to create the success you desire" },
-  { body: "Success is not final, failure is not fatal: it is the courage to continue that counts." },
+  { body: "The past is in your head. The future is in your hands." },
 ];
 
 export const users = [
