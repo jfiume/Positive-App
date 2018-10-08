@@ -1,12 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
-
-const users = [
-  { name: 'Superman' },
-  { name: 'Batman' },
-  { name: 'Wonder Woman' },
-];
+var users = require('../seeds.js');
 
 // Seed the database from the above users
 router.get('/seed', function(req, res) {
