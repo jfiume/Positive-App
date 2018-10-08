@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Affirmation = require('../models/affirmation.js');
-var affirmations = require('../seeds.js');
+var affirmations = require('../seeds/affirmation_seeds.js');
 
 // Seed the database from the above affirmations
 router.get('/seed', function(req, res) {

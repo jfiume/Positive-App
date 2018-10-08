@@ -1,4 +1,4 @@
-export const affirmations = [
+const affirmations = [
   { body: "Today is a good day" },
   { body: "You are the perfect you" },
   { body: "You are great!" },
@@ -51,8 +51,4 @@ export const affirmations = [
   { body: "The past is in your head. The future is in your hands." },
 ];
 
-export const users = [
-  { name: 'Superman' },
-  { name: 'Batman' },
-  { name: 'Wonder Woman' },
-];
+module.exports = affirmations;
