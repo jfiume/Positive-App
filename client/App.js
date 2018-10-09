@@ -13,7 +13,12 @@ import LoadingPage from './components/loading_page';
 import EditPage from './components/edit_page';
 import DeletePage from './components/delete_page';
 
-const store = createStore(RootReducer, applyMiddleware(thunk, logger));
+let store;
+if (__DEV__) {
+  store = createStore(RootReducer, applyMiddleware(thunk, logger));
+} else {
+  store = createStore(RootReducer, applyMiddleware(thunk));
+}
 
 export default class App extends Component {
   render() {
