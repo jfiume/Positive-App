@@ -1,5 +1,7 @@
 # PositiveApp
 
+[PositiveApp](https://expo.io/@joe007/positiveapp)
+
 PositiveApp is a mobile app built on React Native for iOS and Android by Joe Fiume.
 [jfiume.github.io](http://https://github.com/jfiume)
 
