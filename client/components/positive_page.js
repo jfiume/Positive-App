@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, AsyncStorage, ActivityIndicator, Button } from 'react-native';
+import { AppRegistry, Text, View, Image, AsyncStorage, ActivityIndicator, Button, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 import RNShakeEvent from 'react-native-shake-event';
 
@@ -14,6 +14,7 @@ class PositivePage extends Component {
 
     // console.log(this.props.navigation.state);
     this.dayTime = this.dayTime.bind(this);
+    this.longPress = this.longPress.bind(this);
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -83,6 +84,10 @@ class PositivePage extends Component {
     }
   }
 
+  longPress() {
+    this.props.fetchAllAffirmations();
+  }
+
   render() {
     const day = this.dayTime();
     const { loadingUser } = this.props.loadingStatus.loadingUser;
@@ -99,7 +104,9 @@ class PositivePage extends Component {
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/c_scale,w_400/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good {day} {user}</Heading>
-        <Affirmation>{affirmations[affirmationIndex].body}</Affirmation>
+        <Affirmation onLongPress={this.longPress}>
+          <Affirmation_Text>{affirmations[affirmationIndex].body}</Affirmation_Text>
+        </Affirmation>
       </PhoneScreen>
       )
     } else {
@@ -146,11 +153,14 @@ const Heading = styled.Text`
   text-align: center;
 `;
 
-const Affirmation = styled.Text`
-  color: white;
-  font-size: 50;
+const Affirmation = styled.TouchableOpacity`
   position: absolute;
   bottom: 4%;
+`;
+
+const Affirmation_Text = styled.Text`
+  color: white;
+  font-size: 50;
 `;
 
 const BackgroundImg = styled.Image`
