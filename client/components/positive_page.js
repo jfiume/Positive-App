@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Image, AsyncStorage, ActivityIndicator, Button, TouchableOpacity } from 'react-native';
+import { AppRegistry, Text, View, Image, AsyncStorage, ActivityIndicator, Button, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components';
 import RNShakeEvent from 'react-native-shake-event';
 
@@ -104,15 +104,17 @@ class PositivePage extends Component {
           source={{uri: 'https://res.cloudinary.com/pancake/image/upload/c_scale,w_400/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good {day} {user}</Heading>
-        <Affirmation onLongPress={this.longPress}>
-          <Affirmation_Text>{affirmations[affirmationIndex].body}</Affirmation_Text>
+        <Affirmation>
+          <TouchableWithoutFeedback onLongPress={this.longPress}>
+            <Affirmation_Text>{affirmations[affirmationIndex].body}</Affirmation_Text>
+          </TouchableWithoutFeedback>
         </Affirmation>
       </PhoneScreen>
       )
     } else {
       return (
         <Spinner>
-          <ActivityIndicator size="large" color="#00ff00" />
+          <ActivityIndicator size="large" color="#00BFFF" />
         </Spinner>
       )
     }
@@ -146,20 +148,20 @@ const randomIndexSelector = (affirmations) => {
 };
 
 const Heading = styled.Text`
-  color: white;
+  color: #9400D3;
   top: 10%;
   font-size: 40;
   position: absolute;
   text-align: center;
 `;
 
-const Affirmation = styled.TouchableOpacity`
+const Affirmation = styled.View`
   position: absolute;
   bottom: 4%;
 `;
 
 const Affirmation_Text = styled.Text`
-  color: white;
+  color: #9400D3;
   font-size: 50;
 `;
 

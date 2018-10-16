@@ -38,7 +38,7 @@ class LoadingPage extends Component {
   render() {
     return (
       <Spinner>
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#00BFFF" />
       </Spinner>
     )
   }

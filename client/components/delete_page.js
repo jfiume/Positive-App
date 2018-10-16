@@ -51,7 +51,7 @@ class DeletePage extends Component {
     } else {
       return (
         <Spinner>
-          <ActivityIndicator size="large" color="#00ff00" />
+          <ActivityIndicator size="large" color="#00BFFF" />
         </Spinner>
       )
     }
