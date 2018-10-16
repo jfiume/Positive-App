@@ -101,7 +101,7 @@ class PositivePage extends Component {
       return (
         <PhoneScreen>
           <BackgroundImg
-          source={{uri: 'https://res.cloudinary.com/pancake/image/upload/c_scale,w_400/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
+          source={{uri: 'https://res.cloudinary.com/pancake/image/upload/c_scale,w_2400/v1528504474/blue-sky-with-sun-clouds-and-airplane-trail_jgkstb.jpg'}}
         />
         <Heading>Good {day} {user}</Heading>
         <Affirmation>
