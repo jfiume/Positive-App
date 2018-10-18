@@ -11,16 +11,16 @@ PositiveApp is a mobile app built on React Native for iOS and Android by Joe Fiu
 
 - Users can view their name and a random affirmation
   - Asnyc calls pull affirmations from the database. A users' name is held in the AsyncStorage.
-- Users can navigate to 3 different pages
+- Users can navigate to different pages
   - React Navigation allows for seamless navigation with cross-platform capabilities. This allows for navigation on both iOS and Android.
   - Users can create a profile, update and delete their profile.
 - Users can view more detailed styling
   - All components are styled using Styled Components
-[//]: <> (
-  NOTE: still working on this feature
+
+  NOTE: feature in progress
   - Users can shake their phone to produce a new affirmation
   - React Native Shake Event allows for commands to be executed upon phone shaking.
-  )
+
 
 ## Technology
 
