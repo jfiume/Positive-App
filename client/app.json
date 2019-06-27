@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "PositiveApp",
-    "sdkVersion": "27.0.0",
+    "sdkVersion": "33.0.0",
     "description": "PositiveApp is a mobile app built on NodeJs, ExpressJs and React Native for iOS and Android that displays a positive affirmation every time you open it.\n",
     "version": "1.0.1",
     "privacy": "public",
