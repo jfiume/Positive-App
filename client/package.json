@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "expo": "^33.0.5",
-    "react": "^16.4.1",
-    "react-native": "~0.55.2",
+    "react": "^16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-shake": "^3.2.2",
     "react-native-shake-event": "^4.0.1",
     "react-navigation": "^2.6.2",
