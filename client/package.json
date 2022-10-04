@@ -21,7 +21,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^33.0.5",
+    "expo": "^46.0.14",
     "react": "^16.8.3",
     "react-native": "^0.59.9",
     "react-native-shake": "^3.2.2",
